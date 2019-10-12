@@ -54,6 +54,7 @@ namespace Lime上位机
  //           UInt32 can_id = Consts.MASTER_CAN_ID;   //滤波
 //            can_id <<= 21;
 
+
             config.AccCode = System.Convert.ToUInt32("0x80000000", 16);//can_id;// System.Convert.ToUInt32("0x80000000", 16);
             config.AccMask = System.Convert.ToUInt32("0xFFFFFFFF", 16);//0x1fffffff;//过滤前3BIT  0x1f000000
 

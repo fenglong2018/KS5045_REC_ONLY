@@ -68,7 +68,9 @@ namespace Lime上位机
         //Int32 test_current = 1;//写定的电流值
         bool CanRunning = false;
         bool CanSending = false;
-        bool cansend = true;
+        bool CanWriteClr = false;
+        bool CanStopChg = false;
+        bool CanStartChg = false;
         bool STA_PRA_sended = false;
         
         //int cansendtime = 0;
@@ -1366,7 +1368,7 @@ namespace Lime上位机
                             tx_buffer[7] = SendCrcData[1];
                             loadercan.StandardWrite(tx_buffer, cmd, len, type);
                             this.timer2.Enabled = true;
-                            Thread.Sleep(300);
+                            Thread.Sleep(100);
                         }
 
                         tx_buffer[3] = 0x10;
@@ -1377,7 +1379,7 @@ namespace Lime上位机
                         tx_buffer[7] = SendCrcData[1];
                         loadercan.StandardWrite(tx_buffer, cmd, len, type);
                         this.timer2.Enabled = true;
-                        Thread.Sleep(300);
+                        Thread.Sleep(100);
 
                         for (byte i = 0x9F; i <= 0xA2; i++)
                         {
@@ -1388,7 +1390,7 @@ namespace Lime上位机
                             tx_buffer[7] = SendCrcData[1];
                             loadercan.StandardWrite(tx_buffer, cmd, len, type);
                             this.timer2.Enabled = true;
-                            Thread.Sleep(300);
+                            Thread.Sleep(100);
                         }
 
                         STA_PRA_sended = true;
@@ -1408,7 +1410,7 @@ namespace Lime上位机
                         tx_buffer[7] = SendCrcData[1];
                         loadercan.StandardWrite(tx_buffer, cmd, len, type);
                         this.timer2.Enabled = true;
-                        Thread.Sleep(300);
+                        Thread.Sleep(100);
                     }
 
                     for (byte i = 0x50; i <= 0x5D; i++)
@@ -1420,7 +1422,7 @@ namespace Lime上位机
                         tx_buffer[7] = SendCrcData[1];
                         loadercan.StandardWrite(tx_buffer, cmd, len, type);
                         this.timer2.Enabled = true;
-                        Thread.Sleep(300);
+                        Thread.Sleep(100);
                     }
 
                     for (byte i = 0x90; i <= 0x95; i++)
@@ -1432,11 +1434,67 @@ namespace Lime上位机
                         tx_buffer[7] = SendCrcData[1];
                         loadercan.StandardWrite(tx_buffer, cmd, len, type);
                         this.timer2.Enabled = true;
-                        Thread.Sleep(300);
+                        Thread.Sleep(100);
+                    }
+
+                    if (CanWriteClr==true)
+                    {
+                        CanWriteClr = false;
+
+                        tx_buffer[0] = 0xAD;
+                        tx_buffer[1] = 0xDE;
+                        tx_buffer[2] = 0x63;
+                        tx_buffer[3] = 0x1F;
+                        tx_buffer[4] = 0x00;
+                        tx_buffer[5] = 0x00;
+
+                        SendCrcData = CRC(tx_buffer, 6);
+                        tx_buffer[6] = SendCrcData[0];
+                        tx_buffer[7] = SendCrcData[1];
+                        loadercan.StandardWrite(tx_buffer, cmd, len, type);
+                        button1.ForeColor = Color.Black;
+                        Thread.Sleep(100);
+                    }
+
+                    
+                    if (CanStopChg == true)
+                    {
+                        CanStopChg = false;
+
+                        tx_buffer[0] = 0xAD;
+                        tx_buffer[1] = 0xDE;
+                        tx_buffer[2] = 0xA3;
+                        tx_buffer[3] = 0x20;
+                        tx_buffer[4] = 0x00;
+                        tx_buffer[5] = 0x00;
+
+                        SendCrcData = CRC(tx_buffer, 6);
+                        tx_buffer[6] = SendCrcData[0];
+                        tx_buffer[7] = SendCrcData[1];
+                        loadercan.StandardWrite(tx_buffer, cmd, len, type);
+                        button2.ForeColor = Color.Black;
+                        Thread.Sleep(100);
                     }
 
 
-                    //Thread.Sleep(200);
+                    if (CanStartChg == true)
+                    {
+                        CanStartChg = false;
+
+                        tx_buffer[0] = 0xAD;
+                        tx_buffer[1] = 0xDE;
+                        tx_buffer[2] = 0xA3;
+                        tx_buffer[3] = 0x20;
+                        tx_buffer[4] = 0x01;
+                        tx_buffer[5] = 0x00;
+
+                        SendCrcData = CRC(tx_buffer, 6);
+                        tx_buffer[6] = SendCrcData[0];
+                        tx_buffer[7] = SendCrcData[1];
+                        loadercan.StandardWrite(tx_buffer, cmd, len, type);
+                        button3.ForeColor = Color.Black;
+                        Thread.Sleep(100);
+                    }
 
                 }
 
@@ -1521,26 +1579,7 @@ namespace Lime上位机
             loadercan.StandardWrite(tx_buffer, cmd, len, type);
             Thread.Sleep(50);
         }
-        //private void Write_Serial_Number() //208指令写入序列号
-        //{
-        //    byte cmd;
-        //    byte len;
-        //    byte[] tx_buffer = new byte[8];
-        //    tx_buffer[0] = serial_number(1);
-        //    tx_buffer[1] = serial_number(2);
-        //    tx_buffer[2] = serial_number(3);
-        //    tx_buffer[3] = serial_number(4);
-        //    tx_buffer[4] = serial_number(5);//调用规整序列号函数
-        //    tx_buffer[5] = serial_number(6);
-        //    UInt32 data = Convert.ToUInt32(textBox3.Text.Substring(10, 4), 10);
-        //    tx_buffer[6] = (byte)(data);
-        //    tx_buffer[7] = (byte)(data >> 8);
-        //    type = 1;
-        //    len = 8;
-        //    cmd = (byte)8;
-        //    loadercan.StandardWrite(tx_buffer, cmd, len, type);
-        //    Thread.Sleep(50);
-        //}
+
         private void Exit_Calibration_Test_Mode()//退出测试模式
         {
             byte cmd;
@@ -1670,12 +1709,29 @@ namespace Lime上位机
         {
             STA_PRA_sended = false;
 
-
+            //
 
 
         }
 
+        private void Button1_Click(object sender, EventArgs e)
+        {
+            CanWriteClr = true;
+            button1.ForeColor = Color.Gray;
 
+       }
+
+        private void Button2_Click(object sender, EventArgs e)
+        {
+            CanStopChg = true;
+            button2.ForeColor = Color.Gray;
+        }
+
+        private void Button3_Click(object sender, EventArgs e)
+        {
+            CanStartChg = true;
+            button3.ForeColor = Color.Gray;
+        }
 
         /// <summary>
         /// CRC数据验证

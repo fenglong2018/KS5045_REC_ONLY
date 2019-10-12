@@ -49,6 +49,7 @@
             this.timer2 = new System.Windows.Forms.Timer(this.components);
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.button1 = new System.Windows.Forms.Button();
             this.tableLayoutPanel8 = new System.Windows.Forms.TableLayoutPanel();
             this.label95 = new System.Windows.Forms.Label();
             this.BAT_BMS_APP_SW_VER = new System.Windows.Forms.Label();
@@ -127,6 +128,8 @@
             this.SoftVima = new System.Windows.Forms.Label();
             this.SoftImT = new System.Windows.Forms.Label();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.CHG_temp_mosfet = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.lifetimes = new System.Windows.Forms.Label();
             this.label59 = new System.Windows.Forms.Label();
             this.CELL_MIX_VOLTAGE = new System.Windows.Forms.Label();
@@ -182,8 +185,6 @@
             this.CELL_MAX_TEMP = new System.Windows.Forms.Label();
             this.CELL_MIN_TEMP = new System.Windows.Forms.Label();
             this.label55 = new System.Windows.Forms.Label();
-            this.temp_mosfet = new System.Windows.Forms.Label();
-            this.label47 = new System.Windows.Forms.Label();
             this.label44 = new System.Windows.Forms.Label();
             this.label60 = new System.Windows.Forms.Label();
             this.label61 = new System.Windows.Forms.Label();
@@ -191,6 +192,10 @@
             this.temp_6 = new System.Windows.Forms.Label();
             this.label52 = new System.Windows.Forms.Label();
             this.envtemp = new System.Windows.Forms.Label();
+            this.label47 = new System.Windows.Forms.Label();
+            this.temp_mosfet = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.DSC_temp_mosfet = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.textBox9 = new System.Windows.Forms.TextBox();
             this.textBox10 = new System.Windows.Forms.TextBox();
@@ -336,11 +341,11 @@
             this.label198 = new System.Windows.Forms.Label();
             this.label197 = new System.Windows.Forms.Label();
             this.label196 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.CHG_temp_mosfet = new System.Windows.Forms.Label();
-            this.DSC_temp_mosfet = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
             this.msMenu.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -386,7 +391,7 @@
             // 
             this.OpenPortTool.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.OpenPortTool.Name = "OpenPortTool";
-            this.OpenPortTool.Size = new System.Drawing.Size(180, 22);
+            this.OpenPortTool.Size = new System.Drawing.Size(145, 22);
             this.OpenPortTool.Text = "Open[&O]";
             this.OpenPortTool.Click += new System.EventHandler(this.OpenPortTool_Click);
             // 
@@ -394,7 +399,7 @@
             // 
             this.ClosePortTool.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.ClosePortTool.Name = "ClosePortTool";
-            this.ClosePortTool.Size = new System.Drawing.Size(180, 22);
+            this.ClosePortTool.Size = new System.Drawing.Size(145, 22);
             this.ClosePortTool.Text = "Close[&C]";
             this.ClosePortTool.Click += new System.EventHandler(this.ClosePortTool_Click);
             // 
@@ -402,7 +407,7 @@
             // 
             this.ReseachTool.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.ReseachTool.Name = "ReseachTool";
-            this.ReseachTool.Size = new System.Drawing.Size(180, 22);
+            this.ReseachTool.Size = new System.Drawing.Size(145, 22);
             this.ReseachTool.Text = "Research[&R]";
             // 
             // combps
@@ -492,6 +497,11 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.label6);
+            this.tabPage1.Controls.Add(this.label5);
+            this.tabPage1.Controls.Add(this.label4);
+            this.tabPage1.Controls.Add(this.button3);
+            this.tabPage1.Controls.Add(this.button2);
             this.tabPage1.Controls.Add(this.button1);
             this.tabPage1.Controls.Add(this.tableLayoutPanel8);
             this.tabPage1.Controls.Add(this.CHGSysStates);
@@ -507,6 +517,17 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "电池信息";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // button1
+            // 
+            this.button1.ForeColor = System.Drawing.Color.Black;
+            this.button1.Location = new System.Drawing.Point(829, 237);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(110, 49);
+            this.button1.TabIndex = 135;
+            this.button1.Text = "清除故障记录";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.Button1_Click);
             // 
             // tableLayoutPanel8
             // 
@@ -1702,6 +1723,31 @@
             this.tableLayoutPanel1.Size = new System.Drawing.Size(905, 186);
             this.tableLayoutPanel1.TabIndex = 22;
             // 
+            // CHG_temp_mosfet
+            // 
+            this.CHG_temp_mosfet.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.CHG_temp_mosfet.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.CHG_temp_mosfet.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.CHG_temp_mosfet.Location = new System.Drawing.Point(668, 134);
+            this.CHG_temp_mosfet.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.CHG_temp_mosfet.Name = "CHG_temp_mosfet";
+            this.CHG_temp_mosfet.Size = new System.Drawing.Size(43, 21);
+            this.CHG_temp_mosfet.TabIndex = 194;
+            this.CHG_temp_mosfet.Text = "N";
+            this.CHG_temp_mosfet.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label2
+            // 
+            this.label2.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label2.Location = new System.Drawing.Point(557, 136);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(85, 17);
+            this.label2.TabIndex = 135;
+            this.label2.Text = "充电MOS温度";
+            // 
             // lifetimes
             // 
             this.lifetimes.Anchor = System.Windows.Forms.AnchorStyles.None;
@@ -2390,31 +2436,6 @@
             this.label55.TabIndex = 187;
             this.label55.Text = "电芯最低电压";
             // 
-            // temp_mosfet
-            // 
-            this.temp_mosfet.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.temp_mosfet.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.temp_mosfet.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.temp_mosfet.Location = new System.Drawing.Point(849, 160);
-            this.temp_mosfet.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.temp_mosfet.Name = "temp_mosfet";
-            this.temp_mosfet.Size = new System.Drawing.Size(43, 21);
-            this.temp_mosfet.TabIndex = 129;
-            this.temp_mosfet.Text = "N";
-            this.temp_mosfet.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label47
-            // 
-            this.label47.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label47.AutoSize = true;
-            this.label47.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label47.Location = new System.Drawing.Point(748, 162);
-            this.label47.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label47.Name = "label47";
-            this.label47.Size = new System.Drawing.Size(63, 17);
-            this.label47.TabIndex = 134;
-            this.label47.Text = "温度_Mos";
-            // 
             // label44
             // 
             this.label44.Anchor = System.Windows.Forms.AnchorStyles.None;
@@ -2501,6 +2522,56 @@
             this.envtemp.TabIndex = 129;
             this.envtemp.Text = "N";
             this.envtemp.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label47
+            // 
+            this.label47.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label47.AutoSize = true;
+            this.label47.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label47.Location = new System.Drawing.Point(748, 162);
+            this.label47.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label47.Name = "label47";
+            this.label47.Size = new System.Drawing.Size(63, 17);
+            this.label47.TabIndex = 134;
+            this.label47.Text = "温度_Mos";
+            // 
+            // temp_mosfet
+            // 
+            this.temp_mosfet.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.temp_mosfet.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.temp_mosfet.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.temp_mosfet.Location = new System.Drawing.Point(849, 160);
+            this.temp_mosfet.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.temp_mosfet.Name = "temp_mosfet";
+            this.temp_mosfet.Size = new System.Drawing.Size(43, 21);
+            this.temp_mosfet.TabIndex = 129;
+            this.temp_mosfet.Text = "N";
+            this.temp_mosfet.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label3
+            // 
+            this.label3.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label3.Location = new System.Drawing.Point(557, 162);
+            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(85, 17);
+            this.label3.TabIndex = 193;
+            this.label3.Text = "放电MOS温度";
+            // 
+            // DSC_temp_mosfet
+            // 
+            this.DSC_temp_mosfet.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.DSC_temp_mosfet.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.DSC_temp_mosfet.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.DSC_temp_mosfet.Location = new System.Drawing.Point(668, 160);
+            this.DSC_temp_mosfet.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.DSC_temp_mosfet.Name = "DSC_temp_mosfet";
+            this.DSC_temp_mosfet.Size = new System.Drawing.Size(43, 21);
+            this.DSC_temp_mosfet.TabIndex = 195;
+            this.DSC_temp_mosfet.Text = "N";
+            this.DSC_temp_mosfet.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // tabControl1
             // 
@@ -4166,64 +4237,54 @@
             this.label196.Size = new System.Drawing.Size(56, 17);
             this.label196.TabIndex = 115;
             // 
-            // label2
+            // button2
             // 
-            this.label2.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label2.Location = new System.Drawing.Point(557, 136);
-            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(85, 17);
-            this.label2.TabIndex = 135;
-            this.label2.Text = "充电MOS温度";
+            this.button2.ForeColor = System.Drawing.Color.Black;
+            this.button2.Location = new System.Drawing.Point(829, 374);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(110, 38);
+            this.button2.TabIndex = 136;
+            this.button2.Text = "停止充电";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.Button2_Click);
             // 
-            // label3
+            // button3
             // 
-            this.label3.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label3.Location = new System.Drawing.Point(557, 162);
-            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(85, 17);
-            this.label3.TabIndex = 193;
-            this.label3.Text = "放电MOS温度";
+            this.button3.ForeColor = System.Drawing.Color.Black;
+            this.button3.Location = new System.Drawing.Point(829, 438);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(110, 41);
+            this.button3.TabIndex = 136;
+            this.button3.Text = "开启充电";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.Button3_Click);
             // 
-            // CHG_temp_mosfet
+            // label4
             // 
-            this.CHG_temp_mosfet.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.CHG_temp_mosfet.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.CHG_temp_mosfet.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.CHG_temp_mosfet.Location = new System.Drawing.Point(668, 134);
-            this.CHG_temp_mosfet.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.CHG_temp_mosfet.Name = "CHG_temp_mosfet";
-            this.CHG_temp_mosfet.Size = new System.Drawing.Size(43, 21);
-            this.CHG_temp_mosfet.TabIndex = 194;
-            this.CHG_temp_mosfet.Text = "N";
-            this.CHG_temp_mosfet.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(175, 217);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(56, 17);
+            this.label4.TabIndex = 137;
+            this.label4.Text = "一级故障";
             // 
-            // DSC_temp_mosfet
+            // label5
             // 
-            this.DSC_temp_mosfet.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.DSC_temp_mosfet.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.DSC_temp_mosfet.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.DSC_temp_mosfet.Location = new System.Drawing.Point(668, 160);
-            this.DSC_temp_mosfet.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.DSC_temp_mosfet.Name = "DSC_temp_mosfet";
-            this.DSC_temp_mosfet.Size = new System.Drawing.Size(43, 21);
-            this.DSC_temp_mosfet.TabIndex = 195;
-            this.DSC_temp_mosfet.Text = "N";
-            this.DSC_temp_mosfet.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(175, 357);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(56, 17);
+            this.label5.TabIndex = 138;
+            this.label5.Text = "二级故障";
             // 
-            // button1
+            // label6
             // 
-            this.button1.Location = new System.Drawing.Point(829, 237);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(58, 59);
-            this.button1.TabIndex = 135;
-            this.button1.Text = "清除故障记录";
-            this.button1.UseVisualStyleBackColor = true;
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(594, 217);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(56, 17);
+            this.label6.TabIndex = 139;
+            this.label6.Text = "记录故障";
             // 
             // Form1
             // 
@@ -4246,6 +4307,7 @@
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
             this.tabPage1.ResumeLayout(false);
+            this.tabPage1.PerformLayout();
             this.tableLayoutPanel8.ResumeLayout(false);
             this.tableLayoutPanel8.PerformLayout();
             this.CHGSysStates.ResumeLayout(false);
@@ -4578,6 +4640,11 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label DSC_temp_mosfet;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label4;
     }
 }
 
