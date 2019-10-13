@@ -1549,6 +1549,7 @@ namespace Lime上位机
                 //MessageBox.Show("通信超时！");
                 CommStatus.Text = "通信超时！";
 
+
             }
         }
 
