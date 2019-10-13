@@ -23,4 +23,3 @@ C:\Users\fenglong\Source\Repos\KS5045\OFO助力车上位机\obj\x86\Debug\北京
 C:\Users\fenglong\Source\Repos\KS5045\OFO助力车上位机\obj\x86\Debug\KS5045.csproj.CoreCompileInputs.cache
 C:\Users\fenglong\Source\Repos\KS5045\OFO助力车上位机\obj\x86\Debug\北京旷世机器人上位机.exe.manifest
 C:\Users\fenglong\Source\Repos\KS5045\OFO助力车上位机\obj\x86\Debug\北京旷世机器人上位机.application
-C:\Users\fenglong\Source\Repos\KS5045\OFO助力车上位机\obj\x86\Debug\KS5045.csprojAssemblyReference.cache
