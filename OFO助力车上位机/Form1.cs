@@ -1358,7 +1358,7 @@ namespace Lime上位机
 
                     if(STA_PRA_sended == false)
                     {
-                        for (byte i = 0x00; i <= 0x0B; i++)
+                        for (byte i = 0x00; i <= 0x09; i++)
                         {
                             tx_buffer[3] = i;
                             //tx_buffer[5] = i;
@@ -1398,7 +1398,18 @@ namespace Lime上位机
 
                     }
 
-
+                    for (byte i = 0x0A; i <= 0x0B; i++)
+                    {
+                        tx_buffer[3] = i;
+                        //tx_buffer[5] = i;
+                        //tx_buffer[5] = 0;
+                        SendCrcData = CRC(tx_buffer, 6);
+                        tx_buffer[6] = SendCrcData[0];
+                        tx_buffer[7] = SendCrcData[1];
+                        loadercan.StandardWrite(tx_buffer, cmd, len, type);
+                        this.timer2.Enabled = true;
+                        Thread.Sleep(100);
+                    }
 
 
                     for (byte i = 0x11; i <= 0x20; i++)
@@ -1535,7 +1546,9 @@ namespace Lime上位机
             if (overtime > 5)//超时
             {
                 overtime = 0;
-                MessageBox.Show("通信超时！");
+                //MessageBox.Show("通信超时！");
+                CommStatus.Text = "通信超时！";
+
             }
         }
 
