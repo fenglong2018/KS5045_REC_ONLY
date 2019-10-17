@@ -14,7 +14,7 @@ using System.Reflection; // 引用这个才能使用Missing字段
 using System.Runtime.InteropServices;
 using System.Diagnostics;
 
-namespace Lime上位机
+namespace KS5045上位机
 {
     public partial class Form1 : Form
     {
@@ -64,7 +64,7 @@ namespace Lime上位机
 
 
 
-        Lime上位机.disp_list disp = new Lime上位机.disp_list();
+        KS5045上位机.disp_list disp = new KS5045上位机.disp_list();
         //Int32 test_current = 1;//写定的电流值
         bool CanRunning = false;
         bool CanSending = false;
@@ -72,6 +72,7 @@ namespace Lime上位机
         bool CanStopChg = false;
         bool CanStartChg = false;
         bool STA_PRA_sended = false;
+        bool SAVE_DATA_flg = false;
         
         //int cansendtime = 0;
  //       string SaveTime = null;
@@ -104,8 +105,8 @@ namespace Lime上位机
         //bool step5_pass = false;  //校准步骤发送 206 指令 返回成功为true
 
 
-        Lime上位机.CanManager loadercan;
-        Lime上位机.CanManager.VCI_CAN_OBJ[] ReceiveBuffer = new Lime上位机.CanManager.VCI_CAN_OBJ[1000];
+        KS5045上位机.CanManager loadercan;
+        KS5045上位机.CanManager.VCI_CAN_OBJ[] ReceiveBuffer = new KS5045上位机.CanManager.VCI_CAN_OBJ[1000];
 
 
 //        UInt16 aa= CRC16_TAB[3];
@@ -151,9 +152,10 @@ namespace Lime上位机
 
         //public UInt16[] crc16_tab = new UInt16[]
 
-            loadercan = new Lime上位机.CanManager();
-            loadercan.CanId = Lime上位机.Consts.BAT_CAN_ID;
+            loadercan = new KS5045上位机.CanManager();
+            loadercan.CanId = KS5045上位机.Consts.BAT_CAN_ID;
             combps.Enabled = false;
+
 
             Cell_Volt[0] = cell1;
             Cell_Volt[1] = cell2;
@@ -383,7 +385,7 @@ namespace Lime上位机
                             {
                                 len = (byte)(ReceiveBuffer[i].DataLen % 9);
 
-                                fixed (Lime上位机.CanManager.VCI_CAN_OBJ* m_recobj1 = &ReceiveBuffer[i])
+                                fixed (KS5045上位机.CanManager.VCI_CAN_OBJ* m_recobj1 = &ReceiveBuffer[i])
                                 {
                                     for (int j = 0; j < len; j++)
                                     {
@@ -442,7 +444,6 @@ namespace Lime上位机
                             BAT_BMS_CP_VER.Text = "";
                         }
                         
-
                         tmp_ver = (byte)(tmp_data>>8 & 0x000F);
 
                         BAT_BMS_CP_VER.Text += tmp_ver.ToString();
@@ -460,6 +461,10 @@ namespace Lime上位机
 
                     }));
 
+                    //disp.set_value(0x47, Convert.ToDecimal(temp[k] << 1).ToString());//写入Vbat的值
+
+                    disp.set_value(cmd, BAT_BMS_CP_VER.Text);
+
                     break;
 
                 case 0x01:
@@ -473,6 +478,9 @@ namespace Lime上位机
                         //data_tmp = data_tmp * (float)0.1;//精度0.5
                         BAT_MAX_CHARGING_VOLTAGE.Text = tmp_data.ToString();
                     }));
+
+                    disp.set_value(cmd, tmp_data.ToString());
+
                     break;
 
                 case 0x02:
@@ -486,6 +494,9 @@ namespace Lime上位机
                         //data_tmp = data_tmp * (float)0.1;//精度0.5
                         BAT_MIN_DISCHARGING_VOLTAGE.Text = tmp_data.ToString();
                     }));
+
+                    disp.set_value(cmd, tmp_data.ToString());
+
                     break;
 
                 case 0x03:
@@ -500,6 +511,9 @@ namespace Lime上位机
                         data_tmp -= 4000;
                         BAT_MAX_CHARGING_CURRENT.Text = data_tmp.ToString("F0");
                     }));
+
+                    disp.set_value(cmd, tmp_data.ToString());
+
                     break;
 
                 case 0x04:
@@ -513,6 +527,8 @@ namespace Lime上位机
                         //data_tmp = data_tmp * (float)0.1;//精度0.5
                         BAT_RATED_CAPACITY.Text = tmp_data.ToString();
                     }));
+
+                    disp.set_value(cmd, tmp_data.ToString());
 
                     break;
 
@@ -529,6 +545,8 @@ namespace Lime上位机
                         BAT_MAX_TEMP.Text = data_tmp.ToString("F0");
                     }));
 
+                    disp.set_value(cmd, tmp_data.ToString());
+
                     break;
 
                 case 0x06:
@@ -543,6 +561,9 @@ namespace Lime上位机
                         data_tmp -= 40;
                         BAT_MIN_TEMP.Text = data_tmp.ToString("F0");
                     }));
+
+                    disp.set_value(cmd, tmp_data.ToString());
+
                     break;
 
                 case 0x07:
@@ -557,6 +578,7 @@ namespace Lime上位机
                         BAT_RATED_CYCLE_INDEX.Text = tmp_data.ToString();
                     }));
 
+                    disp.set_value(cmd, tmp_data.ToString());
 
                     break;
                 case 0x08:
@@ -571,6 +593,8 @@ namespace Lime上位机
                         BAT_CELLS_NUM.Text = tmp_data.ToString();
                     }));
 
+                    disp.set_value(cmd, tmp_data.ToString());
+
                     break;
 
                 case 0x09:
@@ -584,6 +608,9 @@ namespace Lime上位机
                         //data_tmp = data_tmp * (float)0.1;//精度0.5
                         BAT_TEMP_SENSOR_NUM.Text = tmp_data.ToString();
                     }));
+
+                    disp.set_value(cmd, tmp_data.ToString());
+
                     break;
 
                 case 0x0A:
@@ -598,6 +625,9 @@ namespace Lime上位机
                         data_tmp -= 40;
                         CHG_temp_mosfet.Text = data_tmp.ToString("F0");
                     }));
+
+                    disp.set_value(cmd, tmp_data.ToString());
+
                     break;
 
                 case 0x0B:
@@ -612,6 +642,9 @@ namespace Lime上位机
                         data_tmp -= 40;
                         DSC_temp_mosfet.Text = data_tmp.ToString("F0");
                     }));
+
+                    disp.set_value(cmd, tmp_data.ToString());
+
                     break;
 
 
@@ -641,6 +674,8 @@ namespace Lime上位机
 
                     }));
 
+                    disp.set_value(cmd, tmp_data.ToString());
+
                     break;
 
                 case 0x11:              //BAT_SOC
@@ -652,6 +687,9 @@ namespace Lime上位机
                         data_tmp = data_tmp * (float)1;//精度0.5
                         soc.Text = data_tmp.ToString("F0");
                     }));
+
+                    disp.set_value(cmd, tmp_data.ToString());
+
                     break;
 
                 case 0x12://
@@ -665,6 +703,9 @@ namespace Lime上位机
                         data_tmp = data_tmp * (float)1;//精度0.5
                         BAT_Capacity.Text = data_tmp.ToString("F0");
                     }));
+
+                    disp.set_value(cmd, tmp_data.ToString());
+
                     break;
 
                 case 0x13://
@@ -678,6 +719,8 @@ namespace Lime上位机
                         //data_tmp = data_tmp * (float)0.1;//精度0.5
                         voltage.Text = tmp_data.ToString();
                     }));
+
+                    disp.set_value(cmd, tmp_data.ToString());
 
                     break;
 
@@ -693,6 +736,8 @@ namespace Lime上位机
                         VDiff.Text = data_tmp.ToString("F0");
                     }));
 
+                    disp.set_value(cmd, tmp_data.ToString());
+
                     break;
 
                 case 0x15:      //CELL MAX VOLTAGE
@@ -706,6 +751,8 @@ namespace Lime上位机
                         //data_tmp = data_tmp * (float)0.01;//精度0.5
                         CELL_MAX_VOLTAGE.Text = tmp_data.ToString();
                     }));
+
+                    disp.set_value(cmd, tmp_data.ToString());
 
                     break;
 
@@ -721,6 +768,8 @@ namespace Lime上位机
                         CELL_MIX_VOLTAGE.Text = tmp_data.ToString();
                     }));
 
+                    disp.set_value(cmd, tmp_data.ToString());
+
                     break;
                 case 0x17:          //CURRENT
 
@@ -734,6 +783,8 @@ namespace Lime上位机
                         data_tmp -= 4000;
                         current.Text = data_tmp.ToString("F0");
                     }));
+
+                    disp.set_value(cmd, tmp_data.ToString());
 
                     break;
 
@@ -753,6 +804,9 @@ namespace Lime上位机
                         envtemp.Text = data_tmp.ToString("F0");
                     }));
 
+
+                    disp.set_value(cmd, tmp_data.ToString());
+
                     break;
 
 
@@ -770,6 +824,9 @@ namespace Lime上位机
                         temp_mosfet.Text = data_tmp.ToString("F0");
                     }));
 
+
+                    disp.set_value(cmd, tmp_data.ToString());
+
                     break;
 
 
@@ -785,6 +842,9 @@ namespace Lime上位机
                         data_tmp -= 40;
                         CELL_MAX_TEMP.Text = data_tmp.ToString("F0");
                     }));
+
+                    disp.set_value(cmd, tmp_data.ToString());
+
                     break;
 
                 case 0x1B:
@@ -799,6 +859,9 @@ namespace Lime上位机
                         data_tmp -= 40;
                         CELL_MIN_TEMP.Text = data_tmp.ToString("F0");
                     }));
+
+                    disp.set_value(cmd, tmp_data.ToString());
+
                     break;
 
 
@@ -813,6 +876,9 @@ namespace Lime上位机
                         data_tmp = data_tmp * (float)1;//精度0.5
                         lifetimes.Text = data_tmp.ToString("F0");
                     }));
+
+
+                    disp.set_value(cmd, tmp_data.ToString());
 
                     break;
 
@@ -845,6 +911,9 @@ namespace Lime上位机
                         }
 
                     }
+
+                    disp.set_value(cmd, tmp_data.ToString());
+
                     break;
 
 
@@ -873,6 +942,9 @@ namespace Lime上位机
                             }));
                         }
                     }
+
+                    disp.set_value(cmd, tmp_data.ToString());
+
                     break;
 
 
@@ -901,6 +973,9 @@ namespace Lime上位机
                             }));
                         }
                     }
+
+                    disp.set_value(cmd, tmp_data.ToString());
+
                     break;
 
 
@@ -923,6 +998,9 @@ namespace Lime上位机
                         //data_tmp = data_tmp * (float)0.1;//精度0.5
                         cell1.Text = tmp_data.ToString();
                     }));
+
+                    disp.set_value(cmd, tmp_data.ToString());
+
                     break;
 
 
@@ -936,6 +1014,9 @@ namespace Lime上位机
                         //data_tmp = data_tmp * (float)0.1;//精度0.5
                         cell2.Text = tmp_data.ToString();
                     }));
+
+                    disp.set_value(cmd, tmp_data.ToString());
+
                     break;
 
                 case 0x52:
@@ -948,7 +1029,11 @@ namespace Lime上位机
                         //data_tmp = data_tmp * (float)0.1;//精度0.5
                         cell3.Text = tmp_data.ToString();
                     }));
+
+                    disp.set_value(cmd, tmp_data.ToString());
+
                     break;
+
                 case 0x53:
                     tmp_data = Can_Rev_Buf[5];
                     tmp_data <<= 8;
@@ -959,6 +1044,9 @@ namespace Lime上位机
                         //data_tmp = data_tmp * (float)0.1;//精度0.5
                         cell4.Text = tmp_data.ToString();
                     }));
+
+                    disp.set_value(cmd, tmp_data.ToString());
+
                     break;
 
                 case 0x54:
@@ -971,7 +1059,11 @@ namespace Lime上位机
                         //data_tmp = data_tmp * (float)0.1;//精度0.5
                         cell5.Text = tmp_data.ToString();
                     }));
+
+                    disp.set_value(cmd, tmp_data.ToString());
+
                     break;
+
                 case 0x55:
                     tmp_data = Can_Rev_Buf[5];
                     tmp_data <<= 8;
@@ -982,6 +1074,9 @@ namespace Lime上位机
                         //data_tmp = data_tmp * (float)0.1;//精度0.5
                         cell6.Text = tmp_data.ToString();
                     }));
+
+                    disp.set_value(cmd, tmp_data.ToString());
+
                     break;
 
                 case 0x56:
@@ -994,7 +1089,11 @@ namespace Lime上位机
                         //data_tmp = data_tmp * (float)0.1;//精度0.5
                         cell7.Text = tmp_data.ToString();
                     }));
+
+                    disp.set_value(cmd, tmp_data.ToString());
+
                     break;
+
                 case 0x57:
                     tmp_data = Can_Rev_Buf[5];
                     tmp_data <<= 8;
@@ -1005,7 +1104,11 @@ namespace Lime上位机
                         //data_tmp = data_tmp * (float)0.1;//精度0.5
                         cell8.Text = tmp_data.ToString();
                     }));
+
+                    disp.set_value(cmd, tmp_data.ToString());
+
                     break;
+
                 case 0x58:
                     tmp_data = Can_Rev_Buf[5];
                     tmp_data <<= 8;
@@ -1016,6 +1119,9 @@ namespace Lime上位机
                         //data_tmp = data_tmp * (float)0.1;//精度0.5
                         cell9.Text = tmp_data.ToString();
                     }));
+
+                    disp.set_value(cmd, tmp_data.ToString());
+
                     break;
 
                 case 0x59:
@@ -1028,7 +1134,11 @@ namespace Lime上位机
                         //data_tmp = data_tmp * (float)0.1;//精度0.5
                         cell10.Text = tmp_data.ToString();
                     }));
+
+                    disp.set_value(cmd, tmp_data.ToString());
+
                     break;
+
                 case 0x5A:
                     tmp_data = Can_Rev_Buf[5];
                     tmp_data <<= 8;
@@ -1039,6 +1149,9 @@ namespace Lime上位机
                         //data_tmp = data_tmp * (float)0.1;//精度0.5
                         cell11.Text = tmp_data.ToString();
                     }));
+
+                    disp.set_value(cmd, tmp_data.ToString());
+
                     break;
 
                 case 0x5B:
@@ -1051,7 +1164,11 @@ namespace Lime上位机
                         //data_tmp = data_tmp * (float)0.1;//精度0.5
                         cell12.Text = tmp_data.ToString();
                     }));
+
+                    disp.set_value(cmd, tmp_data.ToString());
+
                     break;
+
                 case 0x5C:
                     tmp_data = Can_Rev_Buf[5];
                     tmp_data <<= 8;
@@ -1062,7 +1179,11 @@ namespace Lime上位机
                         //data_tmp = data_tmp * (float)0.1;//精度0.5
                         cell13.Text = tmp_data.ToString();
                     }));
+
+                    disp.set_value(cmd, tmp_data.ToString());
+
                     break;
+
                 case 0x5D:
                     tmp_data = Can_Rev_Buf[5];
                     tmp_data <<= 8;
@@ -1073,6 +1194,9 @@ namespace Lime上位机
                         //data_tmp = data_tmp * (float)0.1;//精度0.5
                         cell14.Text = tmp_data.ToString();
                     }));
+
+                    disp.set_value(cmd, tmp_data.ToString());
+
                     break;
 
                 case 0x90:
@@ -1087,6 +1211,8 @@ namespace Lime上位机
                         data_tmp -= 40;
                         temp_1.Text = data_tmp.ToString("F0");
                     }));
+
+                    disp.set_value(cmd, tmp_data.ToString());
 
                     break;
 
@@ -1103,6 +1229,8 @@ namespace Lime上位机
                         temp_2.Text = data_tmp.ToString("F0");
                     }));
 
+                    disp.set_value(cmd, tmp_data.ToString());
+
                     break;
 
                 case 0x92:
@@ -1117,6 +1245,9 @@ namespace Lime上位机
                         data_tmp -= 40;
                         temp_3.Text = data_tmp.ToString("F0");
                     }));
+
+                    disp.set_value(cmd, tmp_data.ToString());
+
                     break;
 
                 case 0x93:
@@ -1131,6 +1262,8 @@ namespace Lime上位机
                         data_tmp -= 40;
                         temp_4.Text = data_tmp.ToString("F0");
                     }));
+
+                    disp.set_value(cmd, tmp_data.ToString());
 
                     break;
 
@@ -1147,7 +1280,10 @@ namespace Lime上位机
                         temp_5.Text = data_tmp.ToString("F0");
                     }));
 
+                    disp.set_value(cmd, tmp_data.ToString());
+
                     break;
+
                 case 0x95:
 
                     tmp_data = Can_Rev_Buf[5];
@@ -1160,6 +1296,8 @@ namespace Lime上位机
                         data_tmp -= 40;
                         temp_6.Text = data_tmp.ToString("F0");
                     }));
+
+                    disp.set_value(cmd, tmp_data.ToString());
 
                     break;
 
@@ -1186,6 +1324,8 @@ namespace Lime上位机
                         //data_tmp -= 40;
                         //temp_6.Text = data_tmp.ToString("F");
                     }));
+
+                    disp.set_value(cmd, tmp_data.ToString());
 
                     break;
 
@@ -1219,6 +1359,8 @@ namespace Lime上位机
 
 
                     }));
+
+                    disp.set_value(cmd, tmp_data.ToString());
 
                     break;
 
@@ -1254,6 +1396,8 @@ namespace Lime上位机
 
                     }));
 
+                    disp.set_value(cmd, tmp_data.ToString());
+
                     break;
 
                 case 0xA2:
@@ -1285,6 +1429,8 @@ namespace Lime上位机
                         BAT_BMS_UN_SW_VER.Text += tmp_ver.ToString();
 
                     }));
+
+                    disp.set_value(cmd, tmp_data.ToString());
 
                     break;
 
@@ -1368,7 +1514,7 @@ namespace Lime上位机
                             tx_buffer[7] = SendCrcData[1];
                             loadercan.StandardWrite(tx_buffer, cmd, len, type);
                             this.timer2.Enabled = true;
-                            Thread.Sleep(100);
+                            Thread.Sleep(Consts.TX_DELAY);
                         }
 
                         tx_buffer[3] = 0x10;
@@ -1379,7 +1525,7 @@ namespace Lime上位机
                         tx_buffer[7] = SendCrcData[1];
                         loadercan.StandardWrite(tx_buffer, cmd, len, type);
                         this.timer2.Enabled = true;
-                        Thread.Sleep(100);
+                        Thread.Sleep(Consts.TX_DELAY);
 
                         for (byte i = 0x9F; i <= 0xA2; i++)
                         {
@@ -1390,7 +1536,7 @@ namespace Lime上位机
                             tx_buffer[7] = SendCrcData[1];
                             loadercan.StandardWrite(tx_buffer, cmd, len, type);
                             this.timer2.Enabled = true;
-                            Thread.Sleep(100);
+                            Thread.Sleep(Consts.TX_DELAY);
                         }
 
                         STA_PRA_sended = true;
@@ -1408,7 +1554,7 @@ namespace Lime上位机
                         tx_buffer[7] = SendCrcData[1];
                         loadercan.StandardWrite(tx_buffer, cmd, len, type);
                         this.timer2.Enabled = true;
-                        Thread.Sleep(100);
+                        Thread.Sleep(Consts.TX_DELAY);
                     }
 
 
@@ -1421,7 +1567,7 @@ namespace Lime上位机
                         tx_buffer[7] = SendCrcData[1];
                         loadercan.StandardWrite(tx_buffer, cmd, len, type);
                         this.timer2.Enabled = true;
-                        Thread.Sleep(100);
+                        Thread.Sleep(Consts.TX_DELAY);
                     }
 
                     for (byte i = 0x50; i <= 0x5D; i++)
@@ -1433,7 +1579,7 @@ namespace Lime上位机
                         tx_buffer[7] = SendCrcData[1];
                         loadercan.StandardWrite(tx_buffer, cmd, len, type);
                         this.timer2.Enabled = true;
-                        Thread.Sleep(100);
+                        Thread.Sleep(Consts.TX_DELAY);
                     }
 
                     for (byte i = 0x90; i <= 0x95; i++)
@@ -1445,7 +1591,7 @@ namespace Lime上位机
                         tx_buffer[7] = SendCrcData[1];
                         loadercan.StandardWrite(tx_buffer, cmd, len, type);
                         this.timer2.Enabled = true;
-                        Thread.Sleep(100);
+                        Thread.Sleep(Consts.TX_DELAY);
                     }
 
                     if (CanWriteClr==true)
@@ -1464,7 +1610,7 @@ namespace Lime上位机
                         tx_buffer[7] = SendCrcData[1];
                         loadercan.StandardWrite(tx_buffer, cmd, len, type);
                         button1.ForeColor = Color.Black;
-                        Thread.Sleep(100);
+                        Thread.Sleep(Consts.TX_DELAY);
                     }
 
                     
@@ -1484,7 +1630,7 @@ namespace Lime上位机
                         tx_buffer[7] = SendCrcData[1];
                         loadercan.StandardWrite(tx_buffer, cmd, len, type);
                         button2.ForeColor = Color.Black;
-                        Thread.Sleep(100);
+                        Thread.Sleep(Consts.TX_DELAY);
                     }
 
 
@@ -1504,7 +1650,7 @@ namespace Lime上位机
                         tx_buffer[7] = SendCrcData[1];
                         loadercan.StandardWrite(tx_buffer, cmd, len, type);
                         button3.ForeColor = Color.Black;
-                        Thread.Sleep(100);
+                        Thread.Sleep(Consts.TX_DELAY);
                     }
 
                 }
@@ -1548,7 +1694,6 @@ namespace Lime上位机
                 overtime = 0;
                 //MessageBox.Show("通信超时！");
                 CommStatus.Text = "通信超时！";
-
 
             }
         }
@@ -1746,6 +1891,258 @@ namespace Lime上位机
             CanStartChg = true;
             button3.ForeColor = Color.Gray;
         }
+
+
+
+
+
+        private void SAVE_DATA_CheckedChanged(object sender, EventArgs e)
+        {
+
+            if (SAVE_DATA.Checked == true)
+            {
+                SAVE_DATA.ForeColor = Color.Green;
+                timer4.Enabled = true;
+            }
+            else
+            {
+                SAVE_DATA.ForeColor = Color.Black;
+                timer4.Enabled = false;
+            }
+
+        }
+
+
+
+        string name;
+        private void Timer4_Tick(object sender, EventArgs e)
+        {
+            name = DateTime.Now.ToString("yyyy") + DateTime.Now.ToString("MM") + DateTime.Now.ToString("dd") + "北京旷世机器人"  + ".xls";
+
+            if (File.Exists(name))
+            {
+
+                Save();
+            }
+            else
+            {
+                CreatData();
+                Save();
+            }
+
+        }
+
+
+        public void CreatData()
+        {
+            FileStream fs = new FileStream(DateTime.Now.ToString("yyyy") + DateTime.Now.ToString("MM") + DateTime.Now.ToString("dd") + "北京旷世机器人" +  ".xls", FileMode.Append, FileAccess.Write, FileShare.Write);
+            fs.Close();
+            String NextLine = "";
+            StreamWriter sw = new StreamWriter(DateTime.Now.ToString("yyyy") + DateTime.Now.ToString("MM") + DateTime.Now.ToString("dd") + "北京旷世机器人" + ".xls", true, Encoding.GetEncoding("GB2312"));
+
+            NextLine = "保存时间" + '\t' + "电池总电压" + '\t' + "电池电流" + '\t' + "SOC" +'\t'+ "电池包容量" + '\t' + "充放电次数" + '\t' +
+                       "CELL1" + '\t' + "CELL2" + '\t' + "CELL3"+ '\t' + "CELL4" + '\t' + "CELL5" + '\t' + "CELL6" + '\t' + "CELL7" + '\t' + 
+                       "CELL8" + '\t' + "CELL9" + '\t' + "CELL10" + '\t' + "CELL11" + '\t' + "CELL12" + '\t' + "CELL13" + '\t' + "CELL14" + '\t' + "最高电压" + '\t' + "最低电压" + '\t' + "压差" + '\t' +
+                       "TEMP1" + '\t' + "TEMP2"+ '\t' + "TEMP3" + '\t' + "TEMP4" + '\t' + "TEMP5" + '\t' + "TEMP6" + '\t' + "最高温度" + '\t' + "最低温度" + '\t' + "环境温度" + '\t'+ "充电MOS温度" + '\t' + "放电MOS温度" + '\t' +
+                       
+                       "一级故障" + '\t' + "二级故障" + '\t' + "记录故障" + '\t' + "充电状态"
+                       
+                       + "\r\n";
+                      
+            sw.Write(NextLine);
+            sw.Close();
+        }
+
+        public void Save()
+        {
+            StreamWriter sw = new StreamWriter(DateTime.Now.ToString("yyyy") + DateTime.Now.ToString("MM") + DateTime.Now.ToString("dd") + "北京旷世机器人" +  ".xls", true, Encoding.GetEncoding("GB2312"));
+            String NextLine = "";
+
+            //NextLine = DateTime.Now.ToString("HH") + ":" + DateTime.Now.ToString("mm") + ":" + DateTime.Now.ToString("ss") + '\t'
+            //+ disp.get_value(0x13) + '\t' + disp.get_value(0x17) + '\t' + disp.get_value(0x11) + '\t' + disp.get_value(0x12) + '\t'
+            //+ disp.get_value(0x50) + '\t' + disp.get_value(0x51) + '\t' + disp.get_value(0x52) + '\t' + disp.get_value(0x53) + '\t'
+            //+ disp.get_value(0x54) + '\t' + disp.get_value(0x58) + '\t' + disp.get_value(0x56) + '\t' + disp.get_value(0x57) + '\t'
+            //+ disp.get_value(0x58) + '\t' + disp.get_value(0x59) + '\t' + disp.get_value(0x5A) + '\t' + disp.get_value(0x5B) + '\t'
+            //+ disp.get_value(0x5C) + '\t' + disp.get_value(0x5D) + '\t' + disp.get_value(0x15) + '\t' + disp.get_value(0x16) + '\t'
+            //+ disp.get_value(0x14) + '\t' + disp.get_value(0x90) + '\t' + disp.get_value(0x91) + '\t' + disp.get_value(0x92) + '\t'
+            //+ disp.get_value(0x93) + '\t' + disp.get_value(0x94) + '\t' + disp.get_value(0x95) + '\t' + disp.get_value(0x1A) + '\t'
+            //+ disp.get_value(0x1B) + '\t' + disp.get_value(0x18) + '\t' + disp.get_value(0x0A) + '\t' + disp.get_value(0x0B) + '\t'
+            //+ disp.get_value(0x1D) + '\t' + disp.get_value(0x1E) + '\t' + disp.get_value(0x1F) + '\t' + disp.get_value(0x20) + '\t'
+            //;
+
+            NextLine = DateTime.Now.ToString("HH") + ":" + DateTime.Now.ToString("mm") + ":" + DateTime.Now.ToString("ss") + '\t'
+                + voltage.Text + '\t' + current.Text + '\t' + soc.Text+ '\t' + BAT_Capacity.Text + '\t' + cell1.Text +'\t' + cell2.Text + '\t'
+                + cell3.Text + '\t' + cell4.Text + '\t' + cell5.Text + '\t' + cell6.Text + '\t' + cell7.Text + '\t' + cell8.Text + '\t' + cell9.Text + '\t'
+                + cell10.Text + '\t' + cell11.Text + '\t' + cell12.Text + '\t' + cell13.Text + '\t' + cell14.Text + '\t'
+
+
+                ;
+
+
+
+
+            sw.Write(NextLine);
+            NextLine = "\r\n";
+            sw.Write(NextLine);
+            sw.Close();
+        }
+
+
+        public class COLUMS_INFO
+        {
+            public int info_id { get; set; }
+            public string Length { get; set; }
+            public string Name { get; set; }
+            public string Value { get; set; }
+            public string Uints { get; set; }
+
+            public string getName()
+            {
+                return Name;
+            }
+
+            public string getLength()
+            {
+                return Length;
+            }
+
+            public string getUints()
+            {
+                return Uints;
+            }
+
+            public string getValue()
+            {
+                return Value;
+            }
+
+
+            public void setValue(string val)
+            {
+                this.Value = val;
+            }
+        }
+
+        public List<COLUMS_INFO> users = new List<COLUMS_INFO>
+        {
+
+            new COLUMS_INFO{ info_id=0x00, Name="BMS协议版本号",                     Length="2",         Value=" ",  Uints="hex"},
+            new COLUMS_INFO{ info_id=0x01, Name="电池包充电电压限制",                Length="2",         Value=" ",  Uints="10mV"},
+            new COLUMS_INFO{ info_id=0x02, Name="电池包SOC10%对应电压",              Length="2",         Value=" ",  Uints="10mV"},
+            new COLUMS_INFO{ info_id=0x03, Name="电池包充电电流限制",                Length="2",         Value=" ",  Uints="0.1A"},
+            new COLUMS_INFO{ info_id=0x04, Name="电池包额定容量",                    Length="2",         Value=" ",  Uints="0.1AH"},
+            new COLUMS_INFO{ info_id=0x05, Name="电池包允许使用最高温度",            Length="2",          Value=" ",  Uints="℃"},
+            new COLUMS_INFO{ info_id=0x06, Name="电池包允许使用最低温度",            Length="2",          Value=" ",  Uints="℃"},
+            new COLUMS_INFO{ info_id=0x07, Name="电池包额定充放电次数",              Length="2",          Value=" ",  Uints="次"},
+
+            new COLUMS_INFO{ info_id=0x08, Name="电池包电芯数",                      Length="2",          Value=" ",  Uints="个"},
+            new COLUMS_INFO{ info_id=0x09, Name="电池包温度传感器个数",              Length="2",          Value=" ",  Uints="个"},
+
+            new COLUMS_INFO{ info_id=0x0A, Name="充电MOS温度",                       Length="2",          Value=" ",  Uints="℃"},
+            new COLUMS_INFO{ info_id=0x0B, Name="放电MOS温度",                       Length="2",          Value=" ",  Uints="℃"},
+
+            new COLUMS_INFO{ info_id=0x10, Name="电芯类型",                           Length="2",          Value=" ",  Uints=""},
+
+            new COLUMS_INFO{ info_id=0x11, Name="SOC",                                Length="2",          Value=" ",  Uints="1%"},
+            new COLUMS_INFO{ info_id=0x12, Name="电池包容量",                         Length="2",          Value=" ",  Uints="0.1AH"},
+            new COLUMS_INFO{ info_id=0x13, Name="电池总电压",                         Length="2",          Value=" ",  Uints="10mV"},
+            new COLUMS_INFO{ info_id=0x14, Name="电芯压差",                           Length="2",          Value=" ",  Uints="10mV"},
+            new COLUMS_INFO{ info_id=0x15, Name="最大电压",                           Length="2",          Value=" ",  Uints="1mV"},
+            new COLUMS_INFO{ info_id=0x16, Name="最小电压",                           Length="2",          Value=" ",  Uints="10mV"},
+            new COLUMS_INFO{ info_id=0x17, Name="电流",                               Length="2",          Value=" ",  Uints="0.1A"},
+
+            new COLUMS_INFO{ info_id=0x18, Name="环境温度",                           Length="2",          Value=" ",  Uints="℃"},
+            new COLUMS_INFO{ info_id=0x19, Name="BMS板温度",                          Length="2",          Value=" ",  Uints="℃"},
+            new COLUMS_INFO{ info_id=0x1A, Name="电芯最高温度",                       Length="2",          Value=" ",  Uints="℃"},
+            new COLUMS_INFO{ info_id=0x1B, Name="电芯最低温度",                       Length="2",          Value=" ",  Uints="℃"},
+            new COLUMS_INFO{ info_id=0x1C, Name="充放电次数",                         Length="2",          Value=" ",  Uints="次"},
+            new COLUMS_INFO{ info_id=0x1D, Name="一级告警",                           Length="2",          Value=" ",  Uints=""},
+
+            new COLUMS_INFO{ info_id=0x1E, Name="二级告警",                           Length="2",          Value=" ",  Uints=""},
+            new COLUMS_INFO{ info_id=0x1F, Name="二级故障记录",                       Length="2",          Value=" ",  Uints=""},
+
+            new COLUMS_INFO{ info_id=0x20, Name="充电状态",                           Length="2",          Value=" ",  Uints=""},
+
+            new COLUMS_INFO{ info_id=0x50, Name="CELL1电压",                          Length="2",          Value=" ",  Uints="mV"},
+            new COLUMS_INFO{ info_id=0x51, Name="CELL2电压",                          Length="2",          Value=" ",  Uints="mV"},
+            new COLUMS_INFO{ info_id=0x52, Name="CELL3电压",                          Length="2",          Value=" ",  Uints="mV"},
+            new COLUMS_INFO{ info_id=0x53, Name="CELL4电压",                          Length="2",          Value=" ",  Uints="mV"},
+            new COLUMS_INFO{ info_id=0x54, Name="CELL5电压",                          Length="2",          Value=" ",  Uints="mV"},
+            new COLUMS_INFO{ info_id=0x55, Name="CELL6电压",                          Length="2",          Value=" ",  Uints="mV"},
+            new COLUMS_INFO{ info_id=0x56, Name="CELL7电压",                          Length="2",          Value=" ",  Uints="mV"},
+            new COLUMS_INFO{ info_id=0x57, Name="CELL8电压",                          Length="2",          Value=" ",  Uints="mV"},
+
+            new COLUMS_INFO{ info_id=0x58, Name="CELL9电压",                          Length="2",          Value=" ",  Uints="mV"},
+            new COLUMS_INFO{ info_id=0x59, Name="CELL10电压",                         Length="2",          Value=" ",  Uints="mV"},
+            new COLUMS_INFO{ info_id=0x5A, Name="CELL11电压",                         Length="2",          Value=" ",  Uints="mV"},
+            new COLUMS_INFO{ info_id=0x5B, Name="CELL12电压",                         Length="2",          Value=" ",  Uints="mV"},
+            new COLUMS_INFO{ info_id=0x5C, Name="CELL13电压",                         Length="2",          Value=" ",  Uints="mV"},
+            new COLUMS_INFO{ info_id=0x5D, Name="CELL14电压",                         Length="2",          Value=" ",  Uints="mV"},
+
+            new COLUMS_INFO{ info_id=0x90, Name="CELL1温度",                          Length="2",          Value=" ",  Uints="℃"},
+            new COLUMS_INFO{ info_id=0x91, Name="CELL2温度",                          Length="2",          Value=" ",  Uints="℃"},
+            new COLUMS_INFO{ info_id=0x92, Name="CELL3温度",                          Length="2",          Value=" ",  Uints="℃"},
+            new COLUMS_INFO{ info_id=0x93, Name="CELL4温度",                          Length="2",          Value=" ",  Uints="℃"},
+            new COLUMS_INFO{ info_id=0x94, Name="CELL5温度",                          Length="2",          Value=" ",  Uints="℃"},
+            new COLUMS_INFO{ info_id=0x95, Name="CELL6温度",                          Length="2",          Value=" ",  Uints="℃"},
+
+            new COLUMS_INFO{ info_id=0x9F, Name="电池厂家",                           Length="2",         Value=" ",  Uints=""},
+
+            new COLUMS_INFO{ info_id=0xA0, Name="硬件版本号",                         Length="2",          Value=" ",  Uints=""},
+            new COLUMS_INFO{ info_id=0xA1, Name="应用软件版本号",                     Length="2",          Value=" ",  Uints=""},
+            new COLUMS_INFO{ info_id=0xA2, Name="Boot版本号",                         Length="2",          Value=" ",  Uints=""},
+   
+    };
+
+        public void clearList()
+        {
+            foreach (COLUMS_INFO item in users)
+            {
+                item.Value = " ";
+            }
+        }
+
+
+        public void set_value(int id, string value)
+        {
+            int find_index = users.FindIndex(o => o.info_id == id);
+            if (find_index >= 0)
+            {
+                users[find_index].Value = value;
+            }
+        }
+
+
+        public string get_value(int id)
+        {
+            int find_index = users.FindIndex(o => o.info_id == id);
+            if (find_index >= 0)
+            {
+                return users[find_index].Value;
+            }
+            else
+            {
+                return "";
+            }
+        }
+        public string get_length(int id)
+        {
+            int find_index = users.FindIndex(o => o.info_id == id);
+            if (find_index >= 0)
+            {
+                return users[find_index].Length;
+            }
+            else
+            {
+                return "";
+            }
+        }
+
+
+
+
+
+
 
         /// <summary>
         /// CRC数据验证

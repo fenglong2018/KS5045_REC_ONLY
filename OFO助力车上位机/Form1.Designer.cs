@@ -1,4 +1,4 @@
-﻿namespace Lime上位机
+﻿namespace KS5045上位机
 {
     partial class Form1
     {
@@ -49,6 +49,12 @@
             this.timer2 = new System.Windows.Forms.Timer(this.components);
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.SAVE_DATA = new System.Windows.Forms.CheckBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.button3 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.tableLayoutPanel8 = new System.Windows.Forms.TableLayoutPanel();
             this.label95 = new System.Windows.Forms.Label();
@@ -341,11 +347,8 @@
             this.label198 = new System.Windows.Forms.Label();
             this.label197 = new System.Windows.Forms.Label();
             this.label196 = new System.Windows.Forms.Label();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
+            this.timer4 = new System.Windows.Forms.Timer(this.components);
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.msMenu.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -433,16 +436,14 @@
             // 
             // AboutMeTool
             // 
-            this.AboutMeTool.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.AboutMeTool.Name = "AboutMeTool";
-            this.AboutMeTool.Size = new System.Drawing.Size(144, 22);
-            this.AboutMeTool.Text = "About us[&A]";
+            this.AboutMeTool.Size = new System.Drawing.Size(111, 22);
             // 
             // ExitTool
             // 
             this.ExitTool.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.ExitTool.Name = "ExitTool";
-            this.ExitTool.Size = new System.Drawing.Size(144, 22);
+            this.ExitTool.Size = new System.Drawing.Size(111, 22);
             this.ExitTool.Text = "Exit[&E]";
             // 
             // statusStrip1
@@ -497,6 +498,8 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.checkBox1);
+            this.tabPage1.Controls.Add(this.SAVE_DATA);
             this.tabPage1.Controls.Add(this.label6);
             this.tabPage1.Controls.Add(this.label5);
             this.tabPage1.Controls.Add(this.label4);
@@ -517,6 +520,68 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "电池信息";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // SAVE_DATA
+            // 
+            this.SAVE_DATA.AutoSize = true;
+            this.SAVE_DATA.Font = new System.Drawing.Font("微软雅黑", 10F);
+            this.SAVE_DATA.Location = new System.Drawing.Point(829, 515);
+            this.SAVE_DATA.Name = "SAVE_DATA";
+            this.SAVE_DATA.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.SAVE_DATA.Size = new System.Drawing.Size(112, 24);
+            this.SAVE_DATA.TabIndex = 140;
+            this.SAVE_DATA.Text = "保存实时数据";
+            this.SAVE_DATA.UseVisualStyleBackColor = true;
+            this.SAVE_DATA.CheckedChanged += new System.EventHandler(this.SAVE_DATA_CheckedChanged);
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(594, 217);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(56, 17);
+            this.label6.TabIndex = 139;
+            this.label6.Text = "记录故障";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(175, 357);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(56, 17);
+            this.label5.TabIndex = 138;
+            this.label5.Text = "二级故障";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(175, 217);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(56, 17);
+            this.label4.TabIndex = 137;
+            this.label4.Text = "一级故障";
+            // 
+            // button3
+            // 
+            this.button3.ForeColor = System.Drawing.Color.Black;
+            this.button3.Location = new System.Drawing.Point(829, 438);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(110, 41);
+            this.button3.TabIndex = 136;
+            this.button3.Text = "开启充电";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.Button3_Click);
+            // 
+            // button2
+            // 
+            this.button2.ForeColor = System.Drawing.Color.Black;
+            this.button2.Location = new System.Drawing.Point(829, 374);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(110, 38);
+            this.button2.TabIndex = 136;
+            this.button2.Text = "停止充电";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.Button2_Click);
             // 
             // button1
             // 
@@ -4237,54 +4302,21 @@
             this.label196.Size = new System.Drawing.Size(56, 17);
             this.label196.TabIndex = 115;
             // 
-            // button2
+            // timer4
             // 
-            this.button2.ForeColor = System.Drawing.Color.Black;
-            this.button2.Location = new System.Drawing.Point(829, 374);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(110, 38);
-            this.button2.TabIndex = 136;
-            this.button2.Text = "停止充电";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.Button2_Click);
+            this.timer4.Interval = 2000;
+            this.timer4.Tick += new System.EventHandler(this.Timer4_Tick);
             // 
-            // button3
+            // checkBox1
             // 
-            this.button3.ForeColor = System.Drawing.Color.Black;
-            this.button3.Location = new System.Drawing.Point(829, 438);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(110, 41);
-            this.button3.TabIndex = 136;
-            this.button3.Text = "开启充电";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.Button3_Click);
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(175, 217);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(56, 17);
-            this.label4.TabIndex = 137;
-            this.label4.Text = "一级故障";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(175, 357);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(56, 17);
-            this.label5.TabIndex = 138;
-            this.label5.Text = "二级故障";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(594, 217);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(56, 17);
-            this.label6.TabIndex = 139;
-            this.label6.Text = "记录故障";
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Font = new System.Drawing.Font("微软雅黑", 10F);
+            this.checkBox1.Location = new System.Drawing.Point(829, 557);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(112, 24);
+            this.checkBox1.TabIndex = 141;
+            this.checkBox1.Text = "保存定值数据";
+            this.checkBox1.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
@@ -4645,6 +4677,9 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.CheckBox SAVE_DATA;
+        private System.Windows.Forms.Timer timer4;
+        private System.Windows.Forms.CheckBox checkBox1;
     }
 }
 

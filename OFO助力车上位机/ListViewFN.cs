@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
-namespace Lime上位机
+namespace KS5045上位机
 {
     public class ListViewFN : ListView
     {

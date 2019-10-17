@@ -5,7 +5,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Windows.Forms;
 
-namespace Lime上位机
+namespace KS5045上位机
 {
     class CanManager
     {
@@ -63,7 +63,7 @@ namespace Lime上位机
 
             config.Filter = (Byte)(1);//接收方式 1:接收全部类型 2:只接收标准帧 3:只接收扩展帧
 
-            config.Mode = (Byte)0;//模式 0 正常 1只听 2 自测
+            config.Mode = (Byte)2;//模式 0 正常 1只听 2 自测
 
             UInt32 res = new UInt32();
 

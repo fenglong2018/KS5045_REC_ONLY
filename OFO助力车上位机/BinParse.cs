@@ -5,7 +5,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 
-namespace Lime上位机
+namespace KS5045上位机
 {
     class BinParse
     {

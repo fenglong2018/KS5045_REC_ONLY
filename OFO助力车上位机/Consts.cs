@@ -5,7 +5,7 @@ using System.Text;
 
 using System.Drawing;
 
-namespace Lime上位机
+namespace KS5045上位机
 {
     public class Consts
     {
@@ -19,8 +19,9 @@ namespace Lime上位机
         public const UInt32 MASTER_CAN_ID = 0x18FF5000;
         public const UInt32 SLAVER_CAN_ID = 0x18FF5005;
 
+        public const UInt16 TX_DELAY = 100;
 
-       
+
 
     }
 

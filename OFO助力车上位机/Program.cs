@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
 
-namespace Lime上位机
+namespace KS5045上位机
 {
     static class Program
     {
