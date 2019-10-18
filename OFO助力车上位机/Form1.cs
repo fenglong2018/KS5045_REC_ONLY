@@ -1971,20 +1971,20 @@ namespace KS5045上位机
             //;
 
             NextLine = DateTime.Now.ToString("HH") + ":" + DateTime.Now.ToString("mm") + ":" + DateTime.Now.ToString("ss") + '\t'
-                + voltage.Text + '\t' + current.Text + '\t' + soc.Text+ '\t' + BAT_Capacity.Text + '\t' + cell1.Text +'\t' + cell2.Text + '\t'
-                + cell3.Text + '\t' + cell4.Text + '\t' + cell5.Text + '\t' + cell6.Text + '\t' + cell7.Text + '\t' + cell8.Text + '\t' + cell9.Text + '\t'
-                + cell10.Text + '\t' + cell11.Text + '\t' + cell12.Text + '\t' + cell13.Text + '\t' + cell14.Text + '\t'
-
-
+                + voltage.Text + '\t' + current.Text + '\t' + soc.Text+ '\t' + BAT_Capacity.Text + '\t' + lifetimes.Text + '\t'
+                + cell1.Text + '\t' + cell2.Text + '\t' + cell3.Text + '\t' + cell4.Text + '\t' + cell5.Text + '\t' + cell6.Text + '\t' 
+                + cell7.Text + '\t' + cell8.Text + '\t' + cell9.Text + '\t' + cell10.Text + '\t' + cell11.Text + '\t' + cell12.Text + '\t' 
+                + cell13.Text + '\t' + cell14.Text + '\t' + CELL_MAX_VOLTAGE.Text + '\t' + CELL_MIX_VOLTAGE.Text + '\t' + VDiff.Text + '\t' 
+                + temp_1.Text + '\t' + temp_2.Text + '\t' + temp_3.Text + '\t' + temp_4.Text + '\t'+ temp_5.Text + '\t' + temp_6.Text + '\t' 
+                + CELL_MAX_TEMP.Text + '\t' + CELL_MIN_TEMP.Text + '\t' + envtemp.Text + '\t' + CHG_temp_mosfet.Text + '\t' + DSC_temp_mosfet.Text + '\t'
+                + disp.get_value(0x1D) + '\t' + disp.get_value(0x1E) + '\t' + disp.get_value(0x1F) + '\t' + disp.get_value(0x20) + '\t'
                 ;
-
-
-
 
             sw.Write(NextLine);
             NextLine = "\r\n";
             sw.Write(NextLine);
             sw.Close();
+
         }
 
 
