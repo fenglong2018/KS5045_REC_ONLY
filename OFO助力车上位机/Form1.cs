@@ -157,6 +157,7 @@ namespace KS5045上位机
             combps.Enabled = false;
 
 
+
             Cell_Volt[0] = cell1;
             Cell_Volt[1] = cell2;
             Cell_Volt[2] = cell3;
@@ -290,7 +291,7 @@ namespace KS5045上位机
                 if (loadercan.Open())
                 {
                     loadercan.start();
-                    //timer1.Enabled = true;
+                    timer3.Enabled = true;
  //                   send_buffer[1] = 0x01;
                     can_start();
                 }
@@ -1540,7 +1541,7 @@ namespace KS5045上位机
                         }
 
                         STA_PRA_sended = true;
-                        this.timer3.Enabled = true;
+                        //timer3.Enabled = true;
 
                     }
 

@@ -49,6 +49,7 @@
             this.timer2 = new System.Windows.Forms.Timer(this.components);
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.SAVE_DATA = new System.Windows.Forms.CheckBox();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
@@ -348,7 +349,6 @@
             this.label197 = new System.Windows.Forms.Label();
             this.label196 = new System.Windows.Forms.Label();
             this.timer4 = new System.Windows.Forms.Timer(this.components);
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.msMenu.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -363,7 +363,7 @@
             // 
             // timer3
             // 
-            this.timer3.Interval = 5000;
+            this.timer3.Interval = 8000;
             this.timer3.Tick += new System.EventHandler(this.Timer3_Tick);
             // 
             // msMenu
@@ -394,7 +394,7 @@
             // 
             this.OpenPortTool.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.OpenPortTool.Name = "OpenPortTool";
-            this.OpenPortTool.Size = new System.Drawing.Size(145, 22);
+            this.OpenPortTool.Size = new System.Drawing.Size(180, 22);
             this.OpenPortTool.Text = "Open[&O]";
             this.OpenPortTool.Click += new System.EventHandler(this.OpenPortTool_Click);
             // 
@@ -402,7 +402,7 @@
             // 
             this.ClosePortTool.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.ClosePortTool.Name = "ClosePortTool";
-            this.ClosePortTool.Size = new System.Drawing.Size(145, 22);
+            this.ClosePortTool.Size = new System.Drawing.Size(180, 22);
             this.ClosePortTool.Text = "Close[&C]";
             this.ClosePortTool.Click += new System.EventHandler(this.ClosePortTool_Click);
             // 
@@ -410,7 +410,7 @@
             // 
             this.ReseachTool.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.ReseachTool.Name = "ReseachTool";
-            this.ReseachTool.Size = new System.Drawing.Size(145, 22);
+            this.ReseachTool.Size = new System.Drawing.Size(180, 22);
             this.ReseachTool.Text = "Research[&R]";
             // 
             // combps
@@ -520,6 +520,17 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "电池信息";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Font = new System.Drawing.Font("微软雅黑", 10F);
+            this.checkBox1.Location = new System.Drawing.Point(829, 557);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(112, 24);
+            this.checkBox1.TabIndex = 141;
+            this.checkBox1.Text = "保存定值数据";
+            this.checkBox1.UseVisualStyleBackColor = true;
             // 
             // SAVE_DATA
             // 
@@ -4306,17 +4317,6 @@
             // 
             this.timer4.Interval = 2000;
             this.timer4.Tick += new System.EventHandler(this.Timer4_Tick);
-            // 
-            // checkBox1
-            // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Font = new System.Drawing.Font("微软雅黑", 10F);
-            this.checkBox1.Location = new System.Drawing.Point(829, 557);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(112, 24);
-            this.checkBox1.TabIndex = 141;
-            this.checkBox1.Text = "保存定值数据";
-            this.checkBox1.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 

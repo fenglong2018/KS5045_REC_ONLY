@@ -27,7 +27,6 @@ E:\fenglong\2019\KS5045\KS5045_NEW\OFO助力车上位机\bin\Debug\北京旷世�
 E:\fenglong\2019\KS5045\KS5045_NEW\OFO助力车上位机\bin\Debug\北京旷世机器人上位机.application
 E:\fenglong\2019\KS5045\KS5045_NEW\OFO助力车上位机\bin\Debug\北京旷世机器人上位机.exe
 E:\fenglong\2019\KS5045\KS5045_NEW\OFO助力车上位机\bin\Debug\北京旷世机器人上位机.pdb
-E:\fenglong\2019\KS5045\KS5045_NEW\OFO助力车上位机\obj\x86\Debug\KS5045.csprojAssemblyReference.cache
 E:\fenglong\2019\KS5045\KS5045_NEW\OFO助力车上位机\obj\x86\Debug\北京旷世机器人上位机.Properties.Resources.resources
 E:\fenglong\2019\KS5045\KS5045_NEW\OFO助力车上位机\obj\x86\Debug\KS5045.csproj.GenerateResource.cache
 E:\fenglong\2019\KS5045\KS5045_NEW\OFO助力车上位机\obj\x86\Debug\KS5045.csproj.CoreCompileInputs.cache
