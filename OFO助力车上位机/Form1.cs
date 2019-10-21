@@ -2141,10 +2141,6 @@ namespace KS5045上位机
 
 
 
-
-
-
-
         /// <summary>
         /// CRC数据验证
         /// </summary>

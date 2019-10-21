@@ -349,6 +349,9 @@
             this.label197 = new System.Windows.Forms.Label();
             this.label196 = new System.Windows.Forms.Label();
             this.timer4 = new System.Windows.Forms.Timer(this.components);
+            this.label7 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
             this.msMenu.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -394,7 +397,7 @@
             // 
             this.OpenPortTool.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.OpenPortTool.Name = "OpenPortTool";
-            this.OpenPortTool.Size = new System.Drawing.Size(180, 22);
+            this.OpenPortTool.Size = new System.Drawing.Size(145, 22);
             this.OpenPortTool.Text = "Open[&O]";
             this.OpenPortTool.Click += new System.EventHandler(this.OpenPortTool_Click);
             // 
@@ -402,7 +405,7 @@
             // 
             this.ClosePortTool.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.ClosePortTool.Name = "ClosePortTool";
-            this.ClosePortTool.Size = new System.Drawing.Size(180, 22);
+            this.ClosePortTool.Size = new System.Drawing.Size(145, 22);
             this.ClosePortTool.Text = "Close[&C]";
             this.ClosePortTool.Click += new System.EventHandler(this.ClosePortTool_Click);
             // 
@@ -410,7 +413,7 @@
             // 
             this.ReseachTool.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.ReseachTool.Name = "ReseachTool";
-            this.ReseachTool.Size = new System.Drawing.Size(180, 22);
+            this.ReseachTool.Size = new System.Drawing.Size(145, 22);
             this.ReseachTool.Text = "Research[&R]";
             // 
             // combps
@@ -498,6 +501,9 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.label11);
+            this.tabPage1.Controls.Add(this.label10);
+            this.tabPage1.Controls.Add(this.label7);
             this.tabPage1.Controls.Add(this.checkBox1);
             this.tabPage1.Controls.Add(this.SAVE_DATA);
             this.tabPage1.Controls.Add(this.label6);
@@ -548,6 +554,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
+            this.label6.ForeColor = System.Drawing.Color.Blue;
             this.label6.Location = new System.Drawing.Point(594, 217);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(56, 17);
@@ -557,6 +564,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
+            this.label5.ForeColor = System.Drawing.Color.Blue;
             this.label5.Location = new System.Drawing.Point(175, 357);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(56, 17);
@@ -566,6 +574,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
+            this.label4.ForeColor = System.Drawing.Color.Blue;
             this.label4.Location = new System.Drawing.Point(175, 217);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(56, 17);
@@ -4318,6 +4327,36 @@
             this.timer4.Interval = 2000;
             this.timer4.Tick += new System.EventHandler(this.Timer4_Tick);
             // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.ForeColor = System.Drawing.Color.Blue;
+            this.label7.Location = new System.Drawing.Point(477, 3);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(56, 17);
+            this.label7.TabIndex = 142;
+            this.label7.Text = "实时数据";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.ForeColor = System.Drawing.Color.Blue;
+            this.label10.Location = new System.Drawing.Point(431, 496);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(56, 17);
+            this.label10.TabIndex = 143;
+            this.label10.Text = "定值数据";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.ForeColor = System.Drawing.Color.Blue;
+            this.label11.Location = new System.Drawing.Point(596, 357);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(56, 17);
+            this.label11.TabIndex = 144;
+            this.label11.Text = "充电控制";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
@@ -4680,6 +4719,9 @@
         private System.Windows.Forms.CheckBox SAVE_DATA;
         private System.Windows.Forms.Timer timer4;
         private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label11;
     }
 }
 
