@@ -358,9 +358,11 @@ namespace KS5045上位机
             //UInt32 tmp_id = new UInt32();
             byte cmd;
             byte len;
-            
- //           timer2.Enabled = true;
- //           timer3.Enabled = true;
+
+            byte [] RecCrcData= new byte[2];
+
+            //           timer2.Enabled = true;
+            //           timer3.Enabled = true;
             try
             {
                 while (CanRunning)
@@ -394,9 +396,30 @@ namespace KS5045上位机
                                     }
                                 }
 
+
+                                //以下增加CRC  fenglong 20191025
+
+                                if ((Can_Rev_Buf[0] == 0xAD) && (Can_Rev_Buf[1] == 0xDE))       //判断帧头是否正确
+                                {
+                                    RecCrcData = CRC(Can_Rev_Buf, 6);
+                                    if ( (RecCrcData[0]== Can_Rev_Buf[6]) && (RecCrcData[1] == Can_Rev_Buf[7]) )     //判断校验是否正确
+                                    {
+                                        cmd = ReceiveBuffer[i].Data[3];//(byte)(u32_id);
+                                        data_processing(cmd);//处理返回的指令
+                                    }
+                                }
+                                else if((Can_Rev_Buf[0] == 0x00) && (Can_Rev_Buf[1] == 0x04))
+                                {
+                                    cmd = RecCrcData[2];
+                                    data_processing2(cmd);//处理返回的指令
+                                }
+                                
+                                
+
+
+
                                 //tmp_id = u32_id;
-                                cmd = ReceiveBuffer[i].Data[3];//(byte)(u32_id);
-                                data_processing(cmd);//处理返回的指令
+
 
                             }
 
@@ -415,6 +438,168 @@ namespace KS5045上位机
                 loadercan.Open();
             }
         }
+
+
+        
+        private void data_processing2(UInt32 rec_cmd)
+        {
+            UInt16 tmp_data = 0;
+            byte tmp_ver; 
+            //byte[] binchar = new byte[] { };
+            //float temp_t = 0;
+          //  float data_tmp = 0;//方便处理实型数据
+          //  int j;
+
+            byte cmd;
+            cmd = (byte)rec_cmd;
+
+            switch(cmd)
+            {
+                case 0x9F:
+
+                    tmp_data = Can_Rev_Buf[5];
+                    tmp_data <<= 8;
+                    tmp_data += Can_Rev_Buf[4];
+                    this.BAT_SUPPLIER.Invoke(new EventHandler(delegate
+                    {
+                        if (tmp_data == 2)
+                        {
+                            BAT_SUPPLIER.Text = "SCUD";
+                        }
+                        else
+                        {
+                            BAT_SUPPLIER.Text = "XX";
+                        }
+
+
+                        //data_tmp = tmp_data;
+                        //data_tmp = data_tmp * (float)1;//精度0.5
+                        //data_tmp -= 40;
+                        //temp_6.Text = data_tmp.ToString("F");
+                    }));
+
+                    disp.set_value(cmd, tmp_data.ToString());
+
+                    break;
+
+
+                case 0xA0:
+
+                    tmp_data = Can_Rev_Buf[5];
+                    tmp_data <<= 8;
+                    tmp_data += Can_Rev_Buf[4];
+                    this.BAT_BMS_HW_VER.Invoke(new EventHandler(delegate
+                    {
+                        tmp_ver = (byte)(tmp_data >> 12 & 0x000F);
+                        BAT_BMS_HW_VER.Text = tmp_ver.ToString();
+                        if (tmp_ver == 0)
+                        {
+                            BAT_BMS_HW_VER.Text = "";
+                        }
+                        tmp_ver = (byte)(tmp_data >> 8 & 0x000F);
+
+                        BAT_BMS_HW_VER.Text += tmp_ver.ToString();
+                        BAT_BMS_HW_VER.Text += ".";
+
+                        tmp_ver = (byte)(tmp_data >> 4 & 0x000F);
+
+                        BAT_BMS_HW_VER.Text += tmp_ver.ToString();
+                        BAT_BMS_HW_VER.Text += ".";
+
+                        tmp_ver = (byte)(tmp_data & 0x000F);
+
+                        BAT_BMS_HW_VER.Text += tmp_ver.ToString();
+
+
+                    }));
+
+                    disp.set_value(cmd, tmp_data.ToString());
+
+                    break;
+
+                case 0xA1:
+
+                    tmp_data = Can_Rev_Buf[5];
+                    tmp_data <<= 8;
+                    tmp_data += Can_Rev_Buf[4];
+                    this.BAT_BMS_APP_SW_VER.Invoke(new EventHandler(delegate
+                    {
+
+                        tmp_ver = (byte)(tmp_data >> 12 & 0x000F);
+                        BAT_BMS_APP_SW_VER.Text = tmp_ver.ToString();
+                        if (tmp_ver == 0)
+                        {
+                            BAT_BMS_APP_SW_VER.Text = "";
+                        }
+
+                        tmp_ver = (byte)(tmp_data >> 8 & 0x000F);
+
+                        BAT_BMS_APP_SW_VER.Text += tmp_ver.ToString();
+                        BAT_BMS_APP_SW_VER.Text += ".";
+
+                        tmp_ver = (byte)(tmp_data >> 4 & 0x000F);
+
+                        BAT_BMS_APP_SW_VER.Text += tmp_ver.ToString();
+                        BAT_BMS_APP_SW_VER.Text += ".";
+
+                        tmp_ver = (byte)(tmp_data & 0x000F);
+
+                        BAT_BMS_APP_SW_VER.Text += tmp_ver.ToString();
+
+
+                    }));
+
+                    disp.set_value(cmd, tmp_data.ToString());
+
+                    break;
+
+                case 0xA2:
+
+                    tmp_data = Can_Rev_Buf[5];
+                    tmp_data <<= 8;
+                    tmp_data += Can_Rev_Buf[4];
+                    this.BAT_BMS_UN_SW_VER.Invoke(new EventHandler(delegate
+                    {
+                        tmp_ver = (byte)(tmp_data >> 12 & 0x000F);
+                        BAT_BMS_UN_SW_VER.Text = tmp_ver.ToString();
+                        if (tmp_ver == 0)
+                        {
+                            BAT_BMS_UN_SW_VER.Text = "";
+                        }
+
+                        tmp_ver = (byte)(tmp_data >> 8 & 0x000F);
+
+                        BAT_BMS_UN_SW_VER.Text += tmp_ver.ToString();
+                        BAT_BMS_UN_SW_VER.Text += ".";
+
+                        tmp_ver = (byte)(tmp_data >> 4 & 0x000F);
+
+                        BAT_BMS_UN_SW_VER.Text += tmp_ver.ToString();
+                        BAT_BMS_UN_SW_VER.Text += ".";
+
+                        tmp_ver = (byte)(tmp_data & 0x000F);
+
+                        BAT_BMS_UN_SW_VER.Text += tmp_ver.ToString();
+
+                    }));
+
+                    disp.set_value(cmd, tmp_data.ToString());
+
+                    break;
+
+                default:
+
+                    break;
+
+            }
+        }
+
+
+                     
+
+
+
+
         private void data_processing(UInt32 rec_cmd)
         {
             UInt16 tmp_data = 0;
@@ -1302,139 +1487,6 @@ namespace KS5045上位机
 
                     break;
 
-
-                case 0x9F:
-
-                    tmp_data = Can_Rev_Buf[5];
-                    tmp_data <<= 8;
-                    tmp_data += Can_Rev_Buf[4];
-                    this.BAT_SUPPLIER.Invoke(new EventHandler(delegate
-                    {
-                        if (tmp_data==2)
-                        {
-                            BAT_SUPPLIER.Text = "SCUD";
-                        }
-                        else
-                        {
-                            BAT_SUPPLIER.Text = "XX";
-                        }
-
-
-                        //data_tmp = tmp_data;
-                        //data_tmp = data_tmp * (float)1;//精度0.5
-                        //data_tmp -= 40;
-                        //temp_6.Text = data_tmp.ToString("F");
-                    }));
-
-                    disp.set_value(cmd, tmp_data.ToString());
-
-                    break;
-
-
-                case 0xA0:
-
-                    tmp_data = Can_Rev_Buf[5];
-                    tmp_data <<= 8;
-                    tmp_data += Can_Rev_Buf[4];
-                    this.BAT_BMS_HW_VER.Invoke(new EventHandler(delegate
-                    {
-                        tmp_ver = (byte)(tmp_data >> 12 & 0x000F);
-                        BAT_BMS_HW_VER.Text = tmp_ver.ToString();
-                        if (tmp_ver == 0)
-                        {
-                            BAT_BMS_HW_VER.Text = "";
-                        }
-                        tmp_ver = (byte)(tmp_data >> 8 & 0x000F);
-
-                        BAT_BMS_HW_VER.Text += tmp_ver.ToString();
-                        BAT_BMS_HW_VER.Text += ".";
-
-                        tmp_ver = (byte)(tmp_data >> 4 & 0x000F);
-
-                        BAT_BMS_HW_VER.Text += tmp_ver.ToString();
-                        BAT_BMS_HW_VER.Text += ".";
-
-                        tmp_ver = (byte)(tmp_data & 0x000F);
-
-                        BAT_BMS_HW_VER.Text += tmp_ver.ToString();
-
-
-                    }));
-
-                    disp.set_value(cmd, tmp_data.ToString());
-
-                    break;
-
-                case 0xA1:
-
-                    tmp_data = Can_Rev_Buf[5];
-                    tmp_data <<= 8;
-                    tmp_data += Can_Rev_Buf[4];
-                    this.BAT_BMS_APP_SW_VER.Invoke(new EventHandler(delegate
-                    {
-
-                        tmp_ver = (byte)(tmp_data >> 12 & 0x000F);
-                        BAT_BMS_APP_SW_VER.Text = tmp_ver.ToString();
-                        if (tmp_ver == 0)
-                        {
-                            BAT_BMS_APP_SW_VER.Text = "";
-                        }
-
-                        tmp_ver = (byte)(tmp_data >> 8 & 0x000F);
-
-                        BAT_BMS_APP_SW_VER.Text += tmp_ver.ToString();
-                        BAT_BMS_APP_SW_VER.Text += ".";
-
-                        tmp_ver = (byte)(tmp_data >> 4 & 0x000F);
-
-                        BAT_BMS_APP_SW_VER.Text += tmp_ver.ToString();
-                        BAT_BMS_APP_SW_VER.Text += ".";
-
-                        tmp_ver = (byte)(tmp_data & 0x000F);
-
-                        BAT_BMS_APP_SW_VER.Text += tmp_ver.ToString();
-                      
-
-                    }));
-
-                    disp.set_value(cmd, tmp_data.ToString());
-
-                    break;
-
-                case 0xA2:
-
-                    tmp_data = Can_Rev_Buf[5];
-                    tmp_data <<= 8;
-                    tmp_data += Can_Rev_Buf[4];
-                    this.BAT_BMS_UN_SW_VER.Invoke(new EventHandler(delegate
-                    {
-                        tmp_ver = (byte)(tmp_data >> 12 & 0x000F);
-                        BAT_BMS_UN_SW_VER.Text = tmp_ver.ToString();
-                        if (tmp_ver == 0)
-                        {
-                            BAT_BMS_UN_SW_VER.Text = "";
-                        }
-
-                        tmp_ver = (byte)(tmp_data >> 8 & 0x000F);
-
-                        BAT_BMS_UN_SW_VER.Text += tmp_ver.ToString();
-                        BAT_BMS_UN_SW_VER.Text += ".";
-
-                        tmp_ver = (byte)(tmp_data >> 4 & 0x000F);
-
-                        BAT_BMS_UN_SW_VER.Text += tmp_ver.ToString();
-                        BAT_BMS_UN_SW_VER.Text += ".";
-
-                        tmp_ver = (byte)(tmp_data & 0x000F);
-
-                        BAT_BMS_UN_SW_VER.Text += tmp_ver.ToString();
-
-                    }));
-
-                    disp.set_value(cmd, tmp_data.ToString());
-
-                    break;
-
                 default:
 
                     break;
@@ -1528,19 +1580,45 @@ namespace KS5045上位机
                         this.timer2.Enabled = true;
                         Thread.Sleep(Consts.TX_DELAY);
 
+
+
+                        //0x9F~0xA3     通信格式另立，，20191024 fenglong
+
+                        tx_buffer[0] = 0x51;
+                        tx_buffer[1] = 0x01;
+
+                        tx_buffer[2] = 0x23;
+                        //tx_buffer[3] = 0x13;
+                        tx_buffer[4] = 0x00;
+                        tx_buffer[5] = 0x00;
+                        tx_buffer[6] = 0x00;
+                        tx_buffer[7] = 0x00;
+
+
                         for (byte i = 0x9F; i <= 0xA2; i++)
                         {
                             tx_buffer[3] = i;
                             //tx_buffer[5] = 0;
-                            SendCrcData = CRC(tx_buffer, 6);
-                            tx_buffer[6] = SendCrcData[0];
-                            tx_buffer[7] = SendCrcData[1];
+                            //SendCrcData = CRC(tx_buffer, 6);
+                            //tx_buffer[6] = SendCrcData[0];
+                            //tx_buffer[7] = SendCrcData[1];
                             loadercan.StandardWrite(tx_buffer, cmd, len, type);
                             this.timer2.Enabled = true;
                             Thread.Sleep(Consts.TX_DELAY);
                         }
 
                         STA_PRA_sended = true;
+
+                        //0x9F~0xA3     通信格式另立      20191024 fenglong
+
+                        tx_buffer[0] = 0xAD;
+                        tx_buffer[1] = 0xDE;
+                        tx_buffer[2] = 0x23;
+                        //tx_buffer[3] = 0x13;
+                        tx_buffer[4] = 0x02;
+                        tx_buffer[5] = 0x00;
+
+
                         //timer3.Enabled = true;
 
                     }
