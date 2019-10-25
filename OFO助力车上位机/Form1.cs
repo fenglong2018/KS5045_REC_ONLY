@@ -977,43 +977,43 @@ namespace KS5045上位机
 
 
 
-                case 0x18:
+                //case 0x18:
 
-                    tmp_data = Can_Rev_Buf[5];
-                    tmp_data <<= 8;
-                    tmp_data += Can_Rev_Buf[4];
-                    this.envtemp.Invoke(new EventHandler(delegate
-                    {
-                        data_tmp = tmp_data;
-                        data_tmp = data_tmp * (float)1;//精度0.5
-                        data_tmp -= 40;
-                        envtemp.Text = data_tmp.ToString("F0");
-                    }));
+                //    tmp_data = Can_Rev_Buf[5];
+                //    tmp_data <<= 8;
+                //    tmp_data += Can_Rev_Buf[4];
+                //    this.envtemp.Invoke(new EventHandler(delegate
+                //    {
+                //        data_tmp = tmp_data;
+                //        data_tmp = data_tmp * (float)1;//精度0.5
+                //        data_tmp -= 40;
+                //        envtemp.Text = data_tmp.ToString("F0");
+                //    }));
 
 
-                    disp.set_value(cmd, tmp_data.ToString());
+                //    disp.set_value(cmd, tmp_data.ToString());
 
-                    break;
+                //    break;
 
 
   
-                case 0x19:
+                //case 0x19:
 
-                    tmp_data = Can_Rev_Buf[5];
-                    tmp_data <<= 8;
-                    tmp_data += Can_Rev_Buf[4];
-                    this.temp_mosfet.Invoke(new EventHandler(delegate
-                    {
-                        data_tmp = tmp_data;
-                        data_tmp = data_tmp * (float)1;//精度0.5
-                        data_tmp -= 40;
-                        temp_mosfet.Text = data_tmp.ToString("F0");
-                    }));
+                //    tmp_data = Can_Rev_Buf[5];
+                //    tmp_data <<= 8;
+                //    tmp_data += Can_Rev_Buf[4];
+                //    this.temp_mosfet.Invoke(new EventHandler(delegate
+                //    {
+                //        data_tmp = tmp_data;
+                //        data_tmp = data_tmp * (float)1;//精度0.5
+                //        data_tmp -= 40;
+                //        temp_mosfet.Text = data_tmp.ToString("F0");
+                //    }));
 
 
-                    disp.set_value(cmd, tmp_data.ToString());
+                //    disp.set_value(cmd, tmp_data.ToString());
 
-                    break;
+                //    break;
 
 
                 case 0x1A:
@@ -2022,7 +2022,7 @@ namespace KS5045上位机
             NextLine = "保存时间" + '\t' + "电池总电压" + '\t' + "电池电流" + '\t' + "SOC" +'\t'+ "电池包容量" + '\t' + "充放电次数" + '\t' +
                        "CELL1" + '\t' + "CELL2" + '\t' + "CELL3"+ '\t' + "CELL4" + '\t' + "CELL5" + '\t' + "CELL6" + '\t' + "CELL7" + '\t' + 
                        "CELL8" + '\t' + "CELL9" + '\t' + "CELL10" + '\t' + "CELL11" + '\t' + "CELL12" + '\t' + "CELL13" + '\t' + "CELL14" + '\t' + "最高电压" + '\t' + "最低电压" + '\t' + "压差" + '\t' +
-                       "TEMP1" + '\t' + "TEMP2"+ '\t' + "TEMP3" + '\t' + "TEMP4" + '\t' + "TEMP5" + '\t' + "TEMP6" + '\t' + "最高温度" + '\t' + "最低温度" + '\t' + "环境温度" + '\t'+ "充电MOS温度" + '\t' + "放电MOS温度" + '\t' +
+                       "TEMP1" + '\t' + "TEMP2"+ '\t' + "TEMP3" + '\t' + "TEMP4" + '\t' + "TEMP5" + '\t' + "TEMP6" + '\t' + "最高温度" + '\t' + "最低温度" + '\t' + "充电MOS温度" + '\t' + "放电MOS温度" + '\t' +
                        
                        "一级故障" + '\t' + "二级故障" + '\t' + "记录故障" + '\t' + "充电状态"
                        
@@ -2055,7 +2055,7 @@ namespace KS5045上位机
                 + cell7.Text + '\t' + cell8.Text + '\t' + cell9.Text + '\t' + cell10.Text + '\t' + cell11.Text + '\t' + cell12.Text + '\t' 
                 + cell13.Text + '\t' + cell14.Text + '\t' + CELL_MAX_VOLTAGE.Text + '\t' + CELL_MIX_VOLTAGE.Text + '\t' + VDiff.Text + '\t' 
                 + temp_1.Text + '\t' + temp_2.Text + '\t' + temp_3.Text + '\t' + temp_4.Text + '\t'+ temp_5.Text + '\t' + temp_6.Text + '\t' 
-                + CELL_MAX_TEMP.Text + '\t' + CELL_MIN_TEMP.Text + '\t' + envtemp.Text + '\t' + CHG_temp_mosfet.Text + '\t' + DSC_temp_mosfet.Text + '\t'
+                + CELL_MAX_TEMP.Text + '\t' + CELL_MIN_TEMP.Text + '\t'  + CHG_temp_mosfet.Text + '\t' + DSC_temp_mosfet.Text + '\t'
                 + disp.get_value(0x1D) + '\t' + disp.get_value(0x1E) + '\t' + disp.get_value(0x1F) + '\t' + disp.get_value(0x20) + '\t'
                 ;
 

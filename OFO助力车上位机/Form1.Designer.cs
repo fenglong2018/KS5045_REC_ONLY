@@ -200,10 +200,6 @@
             this.label61 = new System.Windows.Forms.Label();
             this.temp_5 = new System.Windows.Forms.Label();
             this.temp_6 = new System.Windows.Forms.Label();
-            this.label52 = new System.Windows.Forms.Label();
-            this.envtemp = new System.Windows.Forms.Label();
-            this.label47 = new System.Windows.Forms.Label();
-            this.temp_mosfet = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.DSC_temp_mosfet = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
@@ -352,7 +348,6 @@
             this.label197 = new System.Windows.Forms.Label();
             this.label196 = new System.Windows.Forms.Label();
             this.timer4 = new System.Windows.Forms.Timer(this.components);
-            this.tabPage2 = new System.Windows.Forms.TabPage();
             this.msMenu.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -1819,10 +1814,6 @@
             this.tableLayoutPanel1.Controls.Add(this.label61, 4, 5);
             this.tableLayoutPanel1.Controls.Add(this.temp_5, 5, 4);
             this.tableLayoutPanel1.Controls.Add(this.temp_6, 5, 5);
-            this.tableLayoutPanel1.Controls.Add(this.label52, 4, 6);
-            this.tableLayoutPanel1.Controls.Add(this.envtemp, 5, 6);
-            this.tableLayoutPanel1.Controls.Add(this.label47, 8, 6);
-            this.tableLayoutPanel1.Controls.Add(this.temp_mosfet, 9, 6);
             this.tableLayoutPanel1.Controls.Add(this.label3, 6, 6);
             this.tableLayoutPanel1.Controls.Add(this.DSC_temp_mosfet, 7, 6);
             this.tableLayoutPanel1.Location = new System.Drawing.Point(34, 24);
@@ -2614,56 +2605,6 @@
             this.temp_6.Text = "N";
             this.temp_6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // label52
-            // 
-            this.label52.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label52.AutoSize = true;
-            this.label52.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label52.Location = new System.Drawing.Point(391, 162);
-            this.label52.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label52.Name = "label52";
-            this.label52.Size = new System.Drawing.Size(56, 17);
-            this.label52.TabIndex = 134;
-            this.label52.Text = "环境温度";
-            // 
-            // envtemp
-            // 
-            this.envtemp.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.envtemp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.envtemp.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.envtemp.Location = new System.Drawing.Point(488, 160);
-            this.envtemp.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.envtemp.Name = "envtemp";
-            this.envtemp.Size = new System.Drawing.Size(43, 22);
-            this.envtemp.TabIndex = 129;
-            this.envtemp.Text = "N";
-            this.envtemp.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label47
-            // 
-            this.label47.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label47.AutoSize = true;
-            this.label47.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label47.Location = new System.Drawing.Point(748, 162);
-            this.label47.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label47.Name = "label47";
-            this.label47.Size = new System.Drawing.Size(63, 17);
-            this.label47.TabIndex = 134;
-            this.label47.Text = "温度_Mos";
-            // 
-            // temp_mosfet
-            // 
-            this.temp_mosfet.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.temp_mosfet.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.temp_mosfet.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.temp_mosfet.Location = new System.Drawing.Point(849, 160);
-            this.temp_mosfet.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.temp_mosfet.Name = "temp_mosfet";
-            this.temp_mosfet.Size = new System.Drawing.Size(43, 21);
-            this.temp_mosfet.TabIndex = 129;
-            this.temp_mosfet.Text = "N";
-            this.temp_mosfet.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
             // label3
             // 
             this.label3.Anchor = System.Windows.Forms.AnchorStyles.None;
@@ -2692,7 +2633,6 @@
             // tabControl1
             // 
             this.tabControl1.Controls.Add(this.tabPage1);
-            this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Location = new System.Drawing.Point(0, 30);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
@@ -4359,16 +4299,6 @@
             this.timer4.Interval = 2000;
             this.timer4.Tick += new System.EventHandler(this.Timer4_Tick);
             // 
-            // tabPage2
-            // 
-            this.tabPage2.Location = new System.Drawing.Point(4, 26);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(1012, 671);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "在线升级";
-            this.tabPage2.UseVisualStyleBackColor = true;
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
@@ -4563,15 +4493,11 @@
         private System.Windows.Forms.Label CELL_MAX_TEMP;
         private System.Windows.Forms.Label CELL_MIN_TEMP;
         private System.Windows.Forms.Label label55;
-        private System.Windows.Forms.Label temp_mosfet;
-        private System.Windows.Forms.Label label47;
         private System.Windows.Forms.Label label44;
         private System.Windows.Forms.Label label60;
         private System.Windows.Forms.Label label61;
         private System.Windows.Forms.Label temp_5;
         private System.Windows.Forms.Label temp_6;
-        private System.Windows.Forms.Label label52;
-        private System.Windows.Forms.Label envtemp;
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TextBox textBox9;
         private System.Windows.Forms.TextBox textBox10;
@@ -4734,7 +4660,6 @@
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.TabPage tabPage2;
     }
 }
 
