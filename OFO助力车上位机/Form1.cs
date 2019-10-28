@@ -72,11 +72,11 @@ namespace KS5045上位机
         bool CanStopChg = false;
         bool CanStartChg = false;
         bool STA_PRA_sended = false;
-        bool SAVE_DATA_flg = false;
+        //bool SAVE_DATA_flg = false;
         
         //int cansendtime = 0;
  //       string SaveTime = null;
-        int send_cnt = 0;
+        //int send_cnt = 0;
         byte [] send_buffer = new byte[8];
         byte[] tx_buffer = new byte[8];
         int overtime = 0;//超时计数
@@ -901,9 +901,9 @@ namespace KS5045上位机
                     tmp_data += Can_Rev_Buf[4];
                     this.voltage.Invoke(new EventHandler(delegate
                     {
-                        //data_tmp = tmp_data;
-                        //data_tmp = data_tmp * (float)0.1;//精度0.5
-                        voltage.Text = tmp_data.ToString();
+                        data_tmp = tmp_data;
+                        data_tmp = data_tmp * (float)1;//精度0.5
+                        voltage.Text = data_tmp.ToString("F1");
                     }));
 
                     disp.set_value(cmd, tmp_data.ToString());
@@ -967,7 +967,7 @@ namespace KS5045上位机
                         data_tmp = tmp_data;
                         data_tmp = data_tmp * (float)1;//精度0.5
                         data_tmp -= 4000;
-                        current.Text = data_tmp.ToString("F0");
+                        current.Text = data_tmp.ToString("F1");
                     }));
 
                     disp.set_value(cmd, tmp_data.ToString());

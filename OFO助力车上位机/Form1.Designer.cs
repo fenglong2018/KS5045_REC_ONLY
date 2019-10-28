@@ -1184,8 +1184,8 @@
             this.SecondWarning.ColumnCount = 4;
             this.SecondWarning.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.SecondWarning.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.SecondWarning.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.SecondWarning.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.SecondWarning.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30F));
+            this.SecondWarning.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.SecondWarning.Controls.Add(this.BqScd, 3, 0);
             this.SecondWarning.Controls.Add(this.BqUt, 0, 3);
             this.SecondWarning.Controls.Add(this.BqOv, 0, 0);
@@ -1215,7 +1215,7 @@
             this.BqScd.AutoSize = true;
             this.BqScd.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.BqScd.ForeColor = System.Drawing.Color.Red;
-            this.BqScd.Location = new System.Drawing.Point(289, 6);
+            this.BqScd.Location = new System.Drawing.Point(298, 6);
             this.BqScd.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.BqScd.Name = "BqScd";
             this.BqScd.Size = new System.Drawing.Size(56, 17);
@@ -1319,10 +1319,10 @@
             this.BqROc.AutoSize = true;
             this.BqROc.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.BqROc.ForeColor = System.Drawing.Color.Red;
-            this.BqROc.Location = new System.Drawing.Point(192, 29);
+            this.BqROc.Location = new System.Drawing.Point(195, 32);
             this.BqROc.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.BqROc.Name = "BqROc";
-            this.BqROc.Size = new System.Drawing.Size(68, 23);
+            this.BqROc.Size = new System.Drawing.Size(80, 17);
             this.BqROc.TabIndex = 176;
             this.BqROc.Text = "请求电流超限";
             // 
@@ -1332,7 +1332,7 @@
             this.BqImT.AutoSize = true;
             this.BqImT.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.BqImT.ForeColor = System.Drawing.Color.Red;
-            this.BqImT.Location = new System.Drawing.Point(198, 6);
+            this.BqImT.Location = new System.Drawing.Point(207, 6);
             this.BqImT.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.BqImT.Name = "BqImT";
             this.BqImT.Size = new System.Drawing.Size(56, 17);
@@ -1345,7 +1345,7 @@
             this.BqErr.AutoSize = true;
             this.BqErr.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.BqErr.ForeColor = System.Drawing.Color.Red;
-            this.BqErr.Location = new System.Drawing.Point(198, 58);
+            this.BqErr.Location = new System.Drawing.Point(207, 58);
             this.BqErr.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.BqErr.Name = "BqErr";
             this.BqErr.Size = new System.Drawing.Size(56, 17);
@@ -1371,10 +1371,10 @@
             this.BqSUv.AutoSize = true;
             this.BqSUv.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.BqSUv.ForeColor = System.Drawing.Color.Red;
-            this.BqSUv.Location = new System.Drawing.Point(192, 81);
+            this.BqSUv.Location = new System.Drawing.Point(195, 85);
             this.BqSUv.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.BqSUv.Name = "BqSUv";
-            this.BqSUv.Size = new System.Drawing.Size(68, 26);
+            this.BqSUv.Size = new System.Drawing.Size(80, 17);
             this.BqSUv.TabIndex = 181;
             this.BqSUv.Text = "放电欠压三级";
             // 
@@ -1384,8 +1384,8 @@
             this.SecondStorage.ColumnCount = 4;
             this.SecondStorage.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.SecondStorage.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.SecondStorage.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.SecondStorage.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.SecondStorage.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30F));
+            this.SecondStorage.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.SecondStorage.Controls.Add(this.RecOv, 0, 0);
             this.SecondStorage.Controls.Add(this.RecUv, 0, 1);
             this.SecondStorage.Controls.Add(this.RecOcc, 1, 0);
@@ -1406,8 +1406,6 @@
             this.SecondStorage.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.SecondStorage.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.SecondStorage.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.SecondStorage.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.SecondStorage.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.SecondStorage.Size = new System.Drawing.Size(365, 110);
             this.SecondStorage.TabIndex = 130;
             // 
@@ -1495,7 +1493,7 @@
             this.RecImT.AutoSize = true;
             this.RecImT.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.RecImT.ForeColor = System.Drawing.Color.Red;
-            this.RecImT.Location = new System.Drawing.Point(198, 6);
+            this.RecImT.Location = new System.Drawing.Point(207, 6);
             this.RecImT.Name = "RecImT";
             this.RecImT.Size = new System.Drawing.Size(56, 17);
             this.RecImT.TabIndex = 25;
@@ -1508,7 +1506,7 @@
             this.RecROc.AutoSize = true;
             this.RecROc.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.RecROc.ForeColor = System.Drawing.Color.Red;
-            this.RecROc.Location = new System.Drawing.Point(186, 32);
+            this.RecROc.Location = new System.Drawing.Point(195, 32);
             this.RecROc.Name = "RecROc";
             this.RecROc.Size = new System.Drawing.Size(80, 17);
             this.RecROc.TabIndex = 28;
@@ -1521,7 +1519,7 @@
             this.RecErr.AutoSize = true;
             this.RecErr.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.RecErr.ForeColor = System.Drawing.Color.Red;
-            this.RecErr.Location = new System.Drawing.Point(198, 58);
+            this.RecErr.Location = new System.Drawing.Point(207, 58);
             this.RecErr.Name = "RecErr";
             this.RecErr.Size = new System.Drawing.Size(56, 17);
             this.RecErr.TabIndex = 26;
@@ -1534,7 +1532,7 @@
             this.RecScd.AutoSize = true;
             this.RecScd.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.RecScd.ForeColor = System.Drawing.Color.Red;
-            this.RecScd.Location = new System.Drawing.Point(289, 6);
+            this.RecScd.Location = new System.Drawing.Point(298, 6);
             this.RecScd.Name = "RecScd";
             this.RecScd.Size = new System.Drawing.Size(56, 17);
             this.RecScd.TabIndex = 27;
@@ -1573,7 +1571,7 @@
             this.RecSUv.AutoSize = true;
             this.RecSUv.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.RecSUv.ForeColor = System.Drawing.Color.Red;
-            this.RecSUv.Location = new System.Drawing.Point(186, 85);
+            this.RecSUv.Location = new System.Drawing.Point(195, 85);
             this.RecSUv.Name = "RecSUv";
             this.RecSUv.Size = new System.Drawing.Size(80, 17);
             this.RecSUv.TabIndex = 34;
@@ -1586,8 +1584,8 @@
             this.SoftWarning.ColumnCount = 4;
             this.SoftWarning.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.SoftWarning.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.SoftWarning.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.SoftWarning.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.SoftWarning.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30F));
+            this.SoftWarning.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.SoftWarning.Controls.Add(this.SoftUt, 0, 3);
             this.SoftWarning.Controls.Add(this.SoftOv, 0, 0);
             this.SoftWarning.Controls.Add(this.SoftUv, 0, 1);
@@ -1595,9 +1593,9 @@
             this.SoftWarning.Controls.Add(this.SoftOcc, 1, 0);
             this.SoftWarning.Controls.Add(this.softOcd, 1, 1);
             this.SoftWarning.Controls.Add(this.SoftUSoc, 1, 2);
-            this.SoftWarning.Controls.Add(this.SoftROc, 2, 1);
             this.SoftWarning.Controls.Add(this.SoftVima, 1, 3);
             this.SoftWarning.Controls.Add(this.SoftImT, 2, 0);
+            this.SoftWarning.Controls.Add(this.SoftROc, 2, 1);
             this.SoftWarning.Location = new System.Drawing.Point(34, 237);
             this.SoftWarning.Name = "SoftWarning";
             this.SoftWarning.RowCount = 4;
@@ -1705,10 +1703,10 @@
             this.SoftROc.AutoSize = true;
             this.SoftROc.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.SoftROc.ForeColor = System.Drawing.Color.Red;
-            this.SoftROc.Location = new System.Drawing.Point(192, 29);
+            this.SoftROc.Location = new System.Drawing.Point(195, 32);
             this.SoftROc.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.SoftROc.Name = "SoftROc";
-            this.SoftROc.Size = new System.Drawing.Size(68, 23);
+            this.SoftROc.Size = new System.Drawing.Size(80, 17);
             this.SoftROc.TabIndex = 176;
             this.SoftROc.Text = "请求电流超限";
             // 
@@ -1731,7 +1729,7 @@
             this.SoftImT.AutoSize = true;
             this.SoftImT.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.SoftImT.ForeColor = System.Drawing.Color.Red;
-            this.SoftImT.Location = new System.Drawing.Point(198, 6);
+            this.SoftImT.Location = new System.Drawing.Point(207, 6);
             this.SoftImT.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.SoftImT.Name = "SoftImT";
             this.SoftImT.Size = new System.Drawing.Size(56, 17);
