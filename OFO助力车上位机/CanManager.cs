@@ -166,7 +166,7 @@ namespace KS5045上位机
  //               MessageBox.Show(System.Convert.ToString(sendobj.Data[i]));
             }
 
-            if (VCI_Transmit(m_devtype, m_devind, m_canind, ref sendobj, 8) == 0)
+            if (VCI_Transmit(m_devtype, m_devind, m_canind, ref sendobj, 1) == 0)
             {
                 // MessageBox.Show("发送失败");
                 //   form1.str_info = "发送失败";
@@ -179,92 +179,6 @@ namespace KS5045上位机
             {
                 return 0;
             }
-
-
-            /*
-
-            VCI_CAN_OBJ[] vco = new VCI_CAN_OBJ[1];
-            uint dwRel;
-            if (type == 0)
-            {
-                dwRel = (uint)cmd;
-                vco[0].ID = Consts.CAN_ID;
-                vco[0].ID += dwRel;
-                vco[0].RemoteFlag = 0;
-                vco[0].ExternFlag = 0;
-                vco[0].DataLen = len;
-                vco[0].SendType = 0; //只发一次
-                unsafe
-                {
-                    fixed (VCI_CAN_OBJ* m_recobj1 = &vco[0])
-                    {
-                        for (int j = 0; j < len; j++)
-                        {
-                            m_recobj1->Data[j] = write_buffer[j];
-                        }
-                    }
-                }
-            }
-            else
-            {
-                if (type == 1)
-                    vco[0].ID = Consts.CAN_ID;
-                if (type == 2)
-                    vco[0].ID = Consts.CAN_ID_1;
-                if (type == 3)
-                    vco[0].ID = Consts.CAN_ID_2;
-                if (type == 4)
-                    vco[0].ID = Consts.CAN_ID_3;
-                dwRel = (uint)cmd;
-                vco[0].TimeStamp = Convert.ToUInt32(DateTime.Now.Second.ToString(), 16);
-                vco[0].ID += dwRel;
-                vco[0].RemoteFlag = 0;//数据帧 = 0  远程帧 = 1
-                vco[0].ExternFlag = 0;
-                vco[0].DataLen = len;
-                vco[0].SendType = 0; //只发一次
-                if (len == 0)
-                {
-                    len = 1;
-                }
-                unsafe
-                {
-                    fixed (VCI_CAN_OBJ* m_recobj1 = &vco[0])
-                    {
-                        for (int j = 0; j < len; j++)
-                        {
-                            m_recobj1->Data[j] = write_buffer[j];
-                        }
-                    }
-                }
-            }
-            try
-            {
-
-                dwRel = VCI_Transmit(m_devtype, m_devind, m_canind, ref vco[0], (UInt32)len );
-                if (dwRel == 1)
-                {
-                    return 1;
-                }
-                else if (dwRel == 0xffffffff)
-                {
-                    VCI_ResetCAN(m_devtype, m_devind, m_canind);
-                    VCI_ClearBuffer(m_devtype, m_devind, m_canind);
-                    //VCI_CloseDevice(m_devtype, m_devind);
-                    //VCI_OpenDevice(m_devtype, m_devind, m_canind);
-                    return 0;
-                }
-                else
-                {
-                    return 0;
-                }
-            }
-            catch (Exception e)
-            {
-                //e.Message;
-                return -1;
-            }
-
-            */
 
         }
 

@@ -42,14 +42,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="北京旷世机器人上位机.exe" size="136144">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="北京旷世机器人上位机.exe" size="135632">
       <assemblyIdentity name="北京旷世机器人上位机" version="1.0.0.0" language="neutral" processorArchitecture="x86" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>Q+AKMNe7taF6b/mgSWLM+2wNvow=</dsig:DigestValue>
+        <dsig:DigestValue>8Rqu/VZDgjsbH0K/3TnnnBjxWh4=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

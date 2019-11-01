@@ -418,7 +418,7 @@ namespace KS5045上位机
                                 }
                                 else if((Can_Rev_Buf[0] == 0x00) && (Can_Rev_Buf[1] == 0x04))
                                 {
-                                    cmd = RecCrcData[2];
+                                    cmd = Can_Rev_Buf[2];
                                     data_processing2(cmd);//处理返回的指令
                                 }
                                 
@@ -895,7 +895,7 @@ namespace KS5045上位机
                     {
                         data_tmp = tmp_data;
                         data_tmp = data_tmp * (float)1;//精度0.5
-                        BAT_Capacity.Text = data_tmp.ToString("F0");
+                        BAT_Capacity.Text = data_tmp.ToString("F1");
                     }));
 
                     disp.set_value(cmd, tmp_data.ToString());
@@ -1793,90 +1793,90 @@ namespace KS5045上位机
 
         private void Enter_Caliraton_Test_Mode() //201指令，进入测试模式
         {
-            byte cmd;
-            byte len;
-            byte[] tx_buffer = new byte[8];
-            tx_buffer[0] = 0xC5;
-            tx_buffer[1] = 0xE2;
-            tx_buffer[2] = 0xA2;
-            tx_buffer[3] = 0x30;
-            tx_buffer[4] = 0xBD;
-            tx_buffer[5] = 0x12;
-            tx_buffer[6] = 0x5C;
-            tx_buffer[7] = 0xC8;
-            type = 1;
-            len = 8;
-            cmd = (byte)1;
-            loadercan.StandardWrite(tx_buffer, cmd, len, type);
-            Thread.Sleep(50);
+            //byte cmd;
+            //byte len;
+            //byte[] tx_buffer = new byte[8];
+            //tx_buffer[0] = 0xC5;
+            //tx_buffer[1] = 0xE2;
+            //tx_buffer[2] = 0xA2;
+            //tx_buffer[3] = 0x30;
+            //tx_buffer[4] = 0xBD;
+            //tx_buffer[5] = 0x12;
+            //tx_buffer[6] = 0x5C;
+            //tx_buffer[7] = 0xC8;
+            //type = 1;
+            //len = 8;
+            //cmd = (byte)1;
+            //loadercan.StandardWrite(tx_buffer, cmd, len, type);
+            //Thread.Sleep(50);
         }
         private void Unlock_Calibration_Memory_For_Writing()//203指令
         {
-            byte cmd;
-            byte len;
-            byte[] tx_buffer = new byte[8];
-            tx_buffer[0] = 0xF2;
-            tx_buffer[1] = 0x9D;
-            tx_buffer[2] = 0x89;
-            tx_buffer[3] = 0xBE;
-            tx_buffer[4] = 0xBB;
-            tx_buffer[5] = 0x6C;
-            tx_buffer[6] = 0x27;
-            tx_buffer[7] = 0x7C;
-            type = 1;
-            len = 8;
-            cmd = (byte)3;
-            loadercan.StandardWrite(tx_buffer, cmd, len, type);
-            Thread.Sleep(50);
+            //byte cmd;
+            //byte len;
+            //byte[] tx_buffer = new byte[8];
+            //tx_buffer[0] = 0xF2;
+            //tx_buffer[1] = 0x9D;
+            //tx_buffer[2] = 0x89;
+            //tx_buffer[3] = 0xBE;
+            //tx_buffer[4] = 0xBB;
+            //tx_buffer[5] = 0x6C;
+            //tx_buffer[6] = 0x27;
+            //tx_buffer[7] = 0x7C;
+            //type = 1;
+            //len = 8;
+            //cmd = (byte)3;
+            //loadercan.StandardWrite(tx_buffer, cmd, len, type);
+            //Thread.Sleep(50);
         }
 
         private void Exit_Calibration_Test_Mode()//退出测试模式
         {
-            byte cmd;
-            byte len;
-            byte[] tx_buffer = new byte[8];
-            type = 1;
-            len = 0;
-            cmd = (byte)2;
-            byte[] buffer = new byte[8];
-            loadercan.StandardWrite(buffer, cmd, len, type);
-            Thread.Sleep(50);
+            //byte cmd;
+            //byte len;
+            //byte[] tx_buffer = new byte[8];
+            //type = 1;
+            //len = 0;
+            //cmd = (byte)2;
+            //byte[] buffer = new byte[8];
+            //loadercan.StandardWrite(buffer, cmd, len, type);
+            //Thread.Sleep(50);
         }
 
      
 
         private void Test_taillight_Click(object sender, EventArgs e)
         {
-            byte cmd;
-            byte len;
-            type = 3;
-            len = 2;
-            cmd = (byte)0;
-            byte[] buffer = new byte[8];
-            tx_buffer[0] = 0x01;
-            tx_buffer[1] = 0xFF;
-            loadercan.StandardWrite(buffer, cmd, len, type);
-            Thread.Sleep(50);
+            //byte cmd;
+            //byte len;
+            //type = 3;
+            //len = 2;
+            //cmd = (byte)0;
+            //byte[] buffer = new byte[8];
+            //tx_buffer[0] = 0x01;
+            //tx_buffer[1] = 0xFF;
+            //loadercan.StandardWrite(buffer, cmd, len, type);
+            //Thread.Sleep(50);
         }
 
         private void Test_PCM_dischargecurrent_Click(object sender, EventArgs e)
         {
-            byte cmd;
-            byte len;
-            type = 4;
-            len = 8;
-            cmd = (byte)4;
-            byte[] buffer = new byte[8];
-            tx_buffer[0] = 0xC6;
-            tx_buffer[1] = 0x28;
-            tx_buffer[2] = 0x88;
-            tx_buffer[3] = 0xC1;
-            tx_buffer[4] = 0x0D;
-            tx_buffer[5] = 0x24;
-            tx_buffer[6] = 0x46;
-            tx_buffer[7] = 0xF2;
-            loadercan.StandardWrite(buffer, cmd, len, type);
-            Thread.Sleep(50);
+            //byte cmd;
+            //byte len;
+            //type = 4;
+            //len = 8;
+            //cmd = (byte)4;
+            //byte[] buffer = new byte[8];
+            //tx_buffer[0] = 0xC6;
+            //tx_buffer[1] = 0x28;
+            //tx_buffer[2] = 0x88;
+            //tx_buffer[3] = 0xC1;
+            //tx_buffer[4] = 0x0D;
+            //tx_buffer[5] = 0x24;
+            //tx_buffer[6] = 0x46;
+            //tx_buffer[7] = 0xF2;
+            //loadercan.StandardWrite(buffer, cmd, len, type);
+            //Thread.Sleep(50);
         }
        
 
