@@ -16,7 +16,7 @@ namespace KS5045上位机
         public const UInt32 TX_CAN_ID = 0x10000;
         public const UInt32 BAT_CAN_ID = 0x0300;
 
-        public const UInt32 MASTER_CAN_ID = 0x19105045;//0x18FF5000;
+        public const UInt32 MASTER_CAN_ID = 0x18FF5000;//0x19105045;//
         public const UInt32 SLAVER_CAN_ID = 0x18FF5005;
 
         public const UInt16 TX_DELAY = 100;

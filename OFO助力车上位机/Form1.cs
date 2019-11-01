@@ -200,6 +200,8 @@ namespace KS5045上位机
             SoftFlagLabelArr[7] = SoftVima;
             SoftFlagLabelArr[8] = SoftImT;
             SoftFlagLabelArr[9] = SoftROc;
+            SoftFlagLabelArr[10] = SoftOt_CHG;
+            SoftFlagLabelArr[11] = SoftUt_CHG;
 
             BqFlagLabelArr[0] = BqOv;
             BqFlagLabelArr[1] = BqUv;
@@ -214,6 +216,9 @@ namespace KS5045上位机
             BqFlagLabelArr[10] = BqErr;
             BqFlagLabelArr[11] = BqSUv;
             BqFlagLabelArr[12] = BqScd;
+            BqFlagLabelArr[13] = BqOt_CHG;
+            BqFlagLabelArr[14] = BqUt_CHG;
+            BqFlagLabelArr[15] = BqOt_MOS;
 
             RecFlagLabelArr[0] = RecOv;
             RecFlagLabelArr[1] = RecUv;
@@ -228,6 +233,9 @@ namespace KS5045上位机
             RecFlagLabelArr[10] = RecErr;
             RecFlagLabelArr[11] = RecSUv;
             RecFlagLabelArr[12] = RecScd;
+            RecFlagLabelArr[13] = RecOt_CHG;
+            RecFlagLabelArr[14] = RecUt_CHG;
+
 
             ChgFlagLabelArr[0] = SysCharging;
             ChgFlagLabelArr[1] = SysHeating;
@@ -257,17 +265,17 @@ namespace KS5045上位机
 
             }
 
-            for (int i = 0; i < 10; i++)
+            for (int i = 0; i < 12; i++)
             {
                 SoftFlagLabelArr[i].Enabled = false;
             }
 
-            for (int i = 0; i < 13; i++)
+            for (int i = 0; i < 16; i++)
             {
                 BqFlagLabelArr[i].Enabled = false;
             }
 
-            for (int i = 0; i < 13; i++)
+            for (int i = 0; i < 15; i++)
             {
                 RecFlagLabelArr[i].Enabled = false;
             }
@@ -457,9 +465,9 @@ namespace KS5045上位机
             {
                 case 0x9F:
 
-                    tmp_data = Can_Rev_Buf[5];
+                    tmp_data = Can_Rev_Buf[4];
                     tmp_data <<= 8;
-                    tmp_data += Can_Rev_Buf[4];
+                    tmp_data += Can_Rev_Buf[3];
                     this.BAT_SUPPLIER.Invoke(new EventHandler(delegate
                     {
                         if (tmp_data == 2)
@@ -485,9 +493,9 @@ namespace KS5045上位机
 
                 case 0xA0:
 
-                    tmp_data = Can_Rev_Buf[5];
+                    tmp_data = Can_Rev_Buf[4];
                     tmp_data <<= 8;
-                    tmp_data += Can_Rev_Buf[4];
+                    tmp_data += Can_Rev_Buf[3];
                     this.BAT_BMS_HW_VER.Invoke(new EventHandler(delegate
                     {
                         tmp_ver = (byte)(tmp_data >> 12 & 0x000F);
@@ -519,9 +527,9 @@ namespace KS5045上位机
 
                 case 0xA1:
 
-                    tmp_data = Can_Rev_Buf[5];
+                    tmp_data = Can_Rev_Buf[4];
                     tmp_data <<= 8;
-                    tmp_data += Can_Rev_Buf[4];
+                    tmp_data += Can_Rev_Buf[3];
                     this.BAT_BMS_APP_SW_VER.Invoke(new EventHandler(delegate
                     {
 
@@ -555,9 +563,9 @@ namespace KS5045上位机
 
                 case 0xA2:
 
-                    tmp_data = Can_Rev_Buf[5];
+                    tmp_data = Can_Rev_Buf[4];
                     tmp_data <<= 8;
-                    tmp_data += Can_Rev_Buf[4];
+                    tmp_data += Can_Rev_Buf[3];
                     this.BAT_BMS_UN_SW_VER.Invoke(new EventHandler(delegate
                     {
                         tmp_ver = (byte)(tmp_data >> 12 & 0x000F);
@@ -902,8 +910,8 @@ namespace KS5045上位机
                     this.voltage.Invoke(new EventHandler(delegate
                     {
                         data_tmp = tmp_data;
-                        data_tmp = data_tmp * (float)1;//精度0.5
-                        voltage.Text = data_tmp.ToString("F1");
+                        data_tmp = data_tmp * (float)1/1000;//精度0.5
+                        voltage.Text = data_tmp.ToString("F3");
                     }));
 
                     disp.set_value(cmd, tmp_data.ToString());
@@ -967,6 +975,7 @@ namespace KS5045上位机
                         data_tmp = tmp_data;
                         data_tmp = data_tmp * (float)1;//精度0.5
                         data_tmp -= 4000;
+                        data_tmp /= 10;
                         current.Text = data_tmp.ToString("F1");
                     }));
 
@@ -1078,7 +1087,7 @@ namespace KS5045上位机
                     tmp_data <<= 8;
                     tmp_data += Can_Rev_Buf[4];
 
-                    for (int i = 0; i < 10; i++)
+                    for (int i = 0; i < 12; i++)
                     {
                         j = tmp_data;
                         if (((j >> i) &0x01) == 1)//根据返回值决定亮还是不亮
@@ -1110,7 +1119,7 @@ namespace KS5045上位机
                     tmp_data <<= 8;
                     tmp_data += Can_Rev_Buf[4];
 
-                    for (int i = 0; i < 13; i++)
+                    for (int i = 0; i < 16; i++)
                     {
                         j = tmp_data;
                         if (((j >> i) & 0x01) == 1)//根据返回值决定亮还是不亮
@@ -1141,7 +1150,7 @@ namespace KS5045上位机
                     tmp_data <<= 8;
                     tmp_data += Can_Rev_Buf[4];
 
-                    for (int i = 0; i < 13; i++)
+                    for (int i = 0; i < 15; i++)
                     {
                         j = tmp_data;
                         if (((j >> i) & 0x01) == 1)//根据返回值决定亮还是不亮
@@ -1587,8 +1596,8 @@ namespace KS5045上位机
                         tx_buffer[0] = 0x51;
                         tx_buffer[1] = 0x01;
 
-                        tx_buffer[2] = 0x23;
-                        //tx_buffer[3] = 0x13;
+                        //tx_buffer[2] = 0x23;
+                        tx_buffer[3] = 0x00;
                         tx_buffer[4] = 0x00;
                         tx_buffer[5] = 0x00;
                         tx_buffer[6] = 0x00;
@@ -1597,7 +1606,7 @@ namespace KS5045上位机
 
                         for (byte i = 0x9F; i <= 0xA2; i++)
                         {
-                            tx_buffer[3] = i;
+                            tx_buffer[2] = i;
                             //tx_buffer[5] = 0;
                             //SendCrcData = CRC(tx_buffer, 6);
                             //tx_buffer[6] = SendCrcData[0];
@@ -1617,6 +1626,9 @@ namespace KS5045上位机
                         //tx_buffer[3] = 0x13;
                         tx_buffer[4] = 0x02;
                         tx_buffer[5] = 0x00;
+
+
+
 
 
                         //timer3.Enabled = true;
@@ -1713,24 +1725,24 @@ namespace KS5045上位机
                     }
 
 
-                    if (CanStartChg == true)
-                    {
-                        CanStartChg = false;
+                    //if (CanStartChg == true)
+                    //{
+                    //    CanStartChg = false;
 
-                        tx_buffer[0] = 0xAD;
-                        tx_buffer[1] = 0xDE;
-                        tx_buffer[2] = 0xA3;
-                        tx_buffer[3] = 0x20;
-                        tx_buffer[4] = 0x01;
-                        tx_buffer[5] = 0x00;
+                    //    tx_buffer[0] = 0xAD;
+                    //    tx_buffer[1] = 0xDE;
+                    //    tx_buffer[2] = 0xA3;
+                    //    tx_buffer[3] = 0x20;
+                    //    tx_buffer[4] = 0x01;
+                    //    tx_buffer[5] = 0x00;
 
-                        SendCrcData = CRC(tx_buffer, 6);
-                        tx_buffer[6] = SendCrcData[0];
-                        tx_buffer[7] = SendCrcData[1];
-                        loadercan.StandardWrite(tx_buffer, cmd, len, type);
-                        button3.ForeColor = Color.Black;
-                        Thread.Sleep(Consts.TX_DELAY);
-                    }
+                    //    SendCrcData = CRC(tx_buffer, 6);
+                    //    tx_buffer[6] = SendCrcData[0];
+                    //    tx_buffer[7] = SendCrcData[1];
+                    //    loadercan.StandardWrite(tx_buffer, cmd, len, type);
+                    //    button3.ForeColor = Color.Black;
+                    //    Thread.Sleep(Consts.TX_DELAY);
+                    //}
 
                 }
 

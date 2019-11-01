@@ -118,7 +118,7 @@ namespace KS5045上位机
                 config.Timing1 = System.Convert.ToByte(Kbps((int)m_timing, 1), 16);
                 config.Filter = (Byte)(1);//接收方式 1:接收全部类型 2:只接收标准帧 3:只接收扩展帧
 
-                config.Mode = (Byte)2;//模式 0 正常 1只听 2 自测
+                config.Mode = (Byte)0;//模式 0 正常 1只听 2 自测
 
                 UInt32 res = new UInt32();
                 res = VCI_InitCAN(m_devtype, m_devind, m_canind, ref config);//初始化CAN参数f
@@ -168,7 +168,11 @@ namespace KS5045上位机
 
             if (VCI_Transmit(m_devtype, m_devind, m_canind, ref sendobj, 8) == 0)
             {
-                 MessageBox.Show("发送失败");
+                // MessageBox.Show("发送失败");
+                //   form1.str_info = "发送失败";
+                //this.CommStatus.Text = "发送失败";
+                //CommStatus.ForeColor = Color.Blue;
+                
                 return -1;
             }
             else
