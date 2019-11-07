@@ -448,20 +448,20 @@ namespace KS5045上位机
         }
 
 
-        
+
         private void data_processing2(UInt32 rec_cmd)
         {
             UInt16 tmp_data = 0;
-            byte tmp_ver; 
+            byte tmp_ver;
             //byte[] binchar = new byte[] { };
             //float temp_t = 0;
-          //  float data_tmp = 0;//方便处理实型数据
-          //  int j;
+            //  float data_tmp = 0;//方便处理实型数据
+            //  int j;
 
             byte cmd;
             cmd = (byte)rec_cmd;
 
-            switch(cmd)
+            switch (cmd)
             {
                 case 0x9F:
 
@@ -603,7 +603,7 @@ namespace KS5045上位机
         }
 
 
-                     
+
 
 
 
@@ -611,7 +611,7 @@ namespace KS5045上位机
         private void data_processing(UInt32 rec_cmd)
         {
             UInt16 tmp_data = 0;
-            byte tmp_ver; 
+            byte tmp_ver;
             //byte[] binchar = new byte[] { };
             //float temp_t = 0;
             float data_tmp = 0;//方便处理实型数据
@@ -620,7 +620,7 @@ namespace KS5045上位机
             byte cmd;
             cmd = (byte)rec_cmd;
 
-            switch(cmd)
+            switch (cmd)
             {
                 case 0x00:
 
@@ -633,17 +633,17 @@ namespace KS5045上位机
 
                         tmp_ver = (byte)(tmp_data >> 12 & 0x000F);
                         BAT_BMS_CP_VER.Text = tmp_ver.ToString();
-                        if (tmp_ver==0)
+                        if (tmp_ver == 0)
                         {
                             BAT_BMS_CP_VER.Text = "";
                         }
-                        
-                        tmp_ver = (byte)(tmp_data>>8 & 0x000F);
+
+                        tmp_ver = (byte)(tmp_data >> 8 & 0x000F);
 
                         BAT_BMS_CP_VER.Text += tmp_ver.ToString();
                         BAT_BMS_CP_VER.Text += ".";
 
-                        tmp_ver = (byte)(tmp_data>>4 & 0x000F);
+                        tmp_ver = (byte)(tmp_data >> 4 & 0x000F);
 
                         BAT_BMS_CP_VER.Text += tmp_ver.ToString();
                         BAT_BMS_CP_VER.Text += ".";
@@ -668,9 +668,10 @@ namespace KS5045上位机
                     tmp_data += Can_Rev_Buf[4];
                     this.BAT_MAX_CHARGING_VOLTAGE.Invoke(new EventHandler(delegate
                     {
-                        //data_tmp = tmp_data;
-                        //data_tmp = data_tmp * (float)0.1;//精度0.5
-                        BAT_MAX_CHARGING_VOLTAGE.Text = tmp_data.ToString();
+                        data_tmp = tmp_data;
+                        data_tmp = data_tmp * (float)1;//精度0.5
+                        data_tmp /= 100;
+                        BAT_MAX_CHARGING_VOLTAGE.Text = data_tmp.ToString("F2");
                     }));
 
                     disp.set_value(cmd, tmp_data.ToString());
@@ -684,9 +685,10 @@ namespace KS5045上位机
                     tmp_data += Can_Rev_Buf[4];
                     this.BAT_MIN_DISCHARGING_VOLTAGE.Invoke(new EventHandler(delegate
                     {
-                        //data_tmp = tmp_data;
-                        //data_tmp = data_tmp * (float)0.1;//精度0.5
-                        BAT_MIN_DISCHARGING_VOLTAGE.Text = tmp_data.ToString();
+                        data_tmp = tmp_data;
+                        data_tmp = data_tmp * (float)1;//精度0.5
+                        data_tmp /= 100;
+                        BAT_MIN_DISCHARGING_VOLTAGE.Text = data_tmp.ToString("F2");
                     }));
 
                     disp.set_value(cmd, tmp_data.ToString());
@@ -703,7 +705,8 @@ namespace KS5045上位机
                         data_tmp = tmp_data;
                         data_tmp = data_tmp * (float)1;//精度0.5
                         data_tmp -= 4000;
-                        BAT_MAX_CHARGING_CURRENT.Text = data_tmp.ToString("F0");
+                        data_tmp /= 10;
+                        BAT_MAX_CHARGING_CURRENT.Text = data_tmp.ToString("F1");
                     }));
 
                     disp.set_value(cmd, tmp_data.ToString());
@@ -717,9 +720,10 @@ namespace KS5045上位机
                     tmp_data += Can_Rev_Buf[4];
                     this.BAT_RATED_CAPACITY.Invoke(new EventHandler(delegate
                     {
-                        //data_tmp = tmp_data;
-                        //data_tmp = data_tmp * (float)0.1;//精度0.5
-                        BAT_RATED_CAPACITY.Text = tmp_data.ToString();
+                        data_tmp = tmp_data;
+                        data_tmp = data_tmp * (float)1;//精度0.5
+                        data_tmp /= 10;
+                        BAT_RATED_CAPACITY.Text = data_tmp.ToString("F1");
                     }));
 
                     disp.set_value(cmd, tmp_data.ToString());
@@ -727,7 +731,7 @@ namespace KS5045上位机
                     break;
 
                 case 0x05:
-                    
+
                     tmp_data = Can_Rev_Buf[5];
                     tmp_data <<= 8;
                     tmp_data += Can_Rev_Buf[4];
@@ -744,7 +748,7 @@ namespace KS5045上位机
                     break;
 
                 case 0x06:
-                    
+
                     tmp_data = Can_Rev_Buf[5];
                     tmp_data <<= 8;
                     tmp_data += Can_Rev_Buf[4];
@@ -761,7 +765,7 @@ namespace KS5045上位机
                     break;
 
                 case 0x07:
-                    
+
                     tmp_data = Can_Rev_Buf[5];
                     tmp_data <<= 8;
                     tmp_data += Can_Rev_Buf[4];
@@ -776,7 +780,7 @@ namespace KS5045上位机
 
                     break;
                 case 0x08:
-                    
+
                     tmp_data = Can_Rev_Buf[5];
                     tmp_data <<= 8;
                     tmp_data += Can_Rev_Buf[4];
@@ -792,7 +796,7 @@ namespace KS5045上位机
                     break;
 
                 case 0x09:
-                    
+
                     tmp_data = Can_Rev_Buf[5];
                     tmp_data <<= 8;
                     tmp_data += Can_Rev_Buf[4];
@@ -845,13 +849,13 @@ namespace KS5045上位机
 
 
                 case 0x10:
-                    
+
                     tmp_data = Can_Rev_Buf[5];
                     tmp_data <<= 8;
                     tmp_data += Can_Rev_Buf[4];
                     this.BAT_TYPE.Invoke(new EventHandler(delegate
                     {
-                        switch(tmp_data)
+                        switch (tmp_data)
                         {
                             case 3:
                                 BAT_TYPE.Text = "三元锂";
@@ -887,7 +891,7 @@ namespace KS5045上位机
                     break;
 
                 case 0x12://
-                    
+
                     tmp_data = Can_Rev_Buf[5];
                     tmp_data <<= 8;
                     tmp_data += Can_Rev_Buf[4];
@@ -895,6 +899,7 @@ namespace KS5045上位机
                     {
                         data_tmp = tmp_data;
                         data_tmp = data_tmp * (float)1;//精度0.5
+                        data_tmp /= 10;
                         BAT_Capacity.Text = data_tmp.ToString("F1");
                     }));
 
@@ -910,8 +915,8 @@ namespace KS5045上位机
                     this.voltage.Invoke(new EventHandler(delegate
                     {
                         data_tmp = tmp_data;
-                        data_tmp = data_tmp * (float)1/1000;//精度0.5
-                        voltage.Text = data_tmp.ToString("F3");
+                        data_tmp = data_tmp * (float)1 / 100;//精度0.5
+                        voltage.Text = data_tmp.ToString("F2");
                     }));
 
                     disp.set_value(cmd, tmp_data.ToString());
@@ -1005,7 +1010,7 @@ namespace KS5045上位机
                 //    break;
 
 
-  
+
                 //case 0x19:
 
                 //    tmp_data = Can_Rev_Buf[5];
@@ -1090,7 +1095,7 @@ namespace KS5045上位机
                     for (int i = 0; i < 12; i++)
                     {
                         j = tmp_data;
-                        if (((j >> i) &0x01) == 1)//根据返回值决定亮还是不亮
+                        if (((j >> i) & 0x01) == 1)//根据返回值决定亮还是不亮
                         {
                             this.SoftFlagLabelArr[i].Invoke(new EventHandler(delegate
                             {
@@ -1180,7 +1185,7 @@ namespace KS5045上位机
 
                     break;
 
-               
+
 
                 case 0x50:
 
@@ -1501,7 +1506,7 @@ namespace KS5045上位机
                     break;
             }
         }
-     
+
         private void return_mode(int data)//发送校准指令返回值
         {
             int data_return;

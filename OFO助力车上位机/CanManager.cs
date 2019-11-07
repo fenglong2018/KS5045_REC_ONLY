@@ -68,10 +68,10 @@ namespace KS5045上位机
             UInt32 res = new UInt32();
 
 
-            res = VCI_InitCAN(m_devtype, m_devind, m_canind, ref config);//初始化CAN参数f
+            res = VCI_InitCAN(m_devtype, m_devind+1, m_canind, ref config);//初始化CAN参数f
             if (res == 1)       //操作成功
             {
-                VCI_StartCAN(m_devtype, m_devind, m_canind); //启动CAN
+                VCI_StartCAN(m_devtype, m_devind+1, m_canind); //启动CAN
             }
 
             //init((UInt32)1, 8);//8 = 250k  10 = 500k
@@ -87,7 +87,7 @@ namespace KS5045上位机
 
         public bool Open()
         {
-            if (VCI_OpenDevice(m_devtype, m_devind, m_canind) == 0)//0：表示操作失败
+            if (VCI_OpenDevice(m_devtype, m_devind+1, m_canind) == 0)//0：表示操作失败
             {
                 return false;
             }
@@ -136,12 +136,12 @@ namespace KS5045上位机
 
         public UInt32 GetReceiveNum()
         {
-            return (VCI_GetReceiveNum(m_devtype, m_devind, m_canind));
+            return (VCI_GetReceiveNum(m_devtype, m_devind+1, m_canind));
         }
 
         public UInt32 Receive(ref VCI_CAN_OBJ pReceive)
         {
-            return (VCI_Receive(m_devtype, m_devind, m_canind, ref pReceive, 1000, 100));
+            return (VCI_Receive(m_devtype, m_devind+1, m_canind, ref pReceive, 1000, 100));
             //return (VCI_Receive(m_devtype, m_devind, 1, ref pReceive, 1000, 100));
         }
 
