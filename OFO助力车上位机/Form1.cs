@@ -335,10 +335,10 @@ namespace KS5045上位机
                 thread_can.IsBackground = true;
                 thread_can.Start();
 
-                CanSending = true;
-                Thread thread_cansend = new Thread(new ThreadStart(can_send));
-                thread_cansend.IsBackground = true;
-                thread_cansend.Start();
+    //            CanSending = true;
+    //            Thread thread_cansend = new Thread(new ThreadStart(can_send));
+    //            thread_cansend.IsBackground = true;
+    //            thread_cansend.Start();
 
                 str_info = " CAN2.0：" + //cmPort.Text +
                  " BPS：250Kbps";
